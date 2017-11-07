@@ -1,5 +1,3 @@
-# Ear Tickling
-
 ## Getting Started
 
 Install
