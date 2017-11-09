@@ -23,6 +23,7 @@ module.exports = merge(baseWebpackConfig, {
                 // `${assetsRoot}/css/**.css`
             ],
             stripPrefix: `${assetsRoot}/`,
+            importScripts: ['/sw-import.js']
         }),
     ]
 });

@@ -1,0 +1,33 @@
+{
+  "short_name": "et-fe",
+  "name": "ET",
+  "gcm_sender_id": "664167138565",
+  "permissions": ["gcm"],
+  "icons": [
+    {
+      "src": "./images/launcher-icon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/launcher-icon-2x.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icon-4x.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2b2d32",
+  "background_color": "#2b2d32"
+}

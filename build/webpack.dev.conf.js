@@ -6,7 +6,8 @@ module.exports = merge(baseWebpackConfig, {
     plugins: [
         new SWPrecacheWebpackPlugin({
             verbose: true,
-            staticFileGlobs: []
+            staticFileGlobs: [],
+            importScripts: ['/sw-import.js']
         })
     ]
 });
