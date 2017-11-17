@@ -22,7 +22,10 @@ Vue.use(VueMaterial)
 // Vue.use(VueMaterial.MdIcon)
 Vue.material.registerTheme({
     default: {
-        primary: 'blue',
+        primary: {
+            color: 'orange',
+            hue: 800
+        },
         accent: 'red',
         warn: 'red',
         background: 'white'
@@ -31,7 +34,10 @@ Vue.material.registerTheme({
         primary: 'white',
         accent: 'red',
         warn: 'red',
-        background: 'blue'
+        background: {
+            color: 'orange',
+            hue: 800
+        }
     }
 });
 

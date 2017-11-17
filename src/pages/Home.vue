@@ -1,7 +1,7 @@
 <template>
     <md-layout>
-        <md-layout :md-column="true">
-            <md-layout :md-flex="true">
+        <md-layout md-column>
+            <md-layout md-flex>
                 <component :is="tab" />
             </md-layout>
             <md-bottom-bar md-theme="inverse">
