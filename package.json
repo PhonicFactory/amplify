@@ -12,6 +12,7 @@
     "simple-server": "cd ./dist && python -m SimpleHTTPServer 8080"
   },
   "dependencies": {
+    "auth0-js": "^8.11.3",
     "axios": "^0.17.0",
     "vue": "^2.5.3",
     "vue-material": "^0.8.1",

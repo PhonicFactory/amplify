@@ -46,8 +46,9 @@ module.exports = {
         ])
     ],
     devServer: {
-        contentBase: config.build.assetsRoot
+        contentBase: config.build.assetsRoot,
         // compress: true,
-        // port: 9000
+        // port: 9000,
+        historyApiFallback: true
     }
 };
