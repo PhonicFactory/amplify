@@ -2,8 +2,9 @@ import { WebAuth } from 'auth0-js';
 import store from '../store';
 
 const service = new WebAuth({
-    domain: "et-fe.auth0.com",
-    clientID: "UhHJQ5wWsPMhmZ2u28KWkdVxAYqoWCBh",
+    domain: "eartickling.auth0.com",
+    clientID: "vMXpi2lDi1VwOMYuM8dlCJ4X3k4aoz9e",
+    audience: "http://api.eartickling.com",
     redirectUri: 'http://localhost:8081/callback',
     responseType: 'token id_token',
     scope: 'openid'
@@ -68,4 +69,9 @@ export function isAuthenticated () {
 
 export function setAuthenticated () {
     setAuthFlag(isValid());
+}
+
+export function getAccessToken() {
+    // TODO: If there's no access token we should prompt login
+    return localStorage.getItem('access_token');
 }

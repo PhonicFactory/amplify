@@ -17,10 +17,10 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/conversations',
-            name: 'conversations',
+            path: '/calls',
+            name: 'calls',
             component: Home,
-            props: { tab: 'conversations' }
+            props: { tab: 'calls' }
         },
         {
             path: '/profile',

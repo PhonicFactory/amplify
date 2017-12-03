@@ -10,31 +10,45 @@
                         <img src="https://placeimg.com/64/64/people/1" alt="People">
                     </md-avatar>
                 </md-list-item>
-                <md-list-item>
+                <md-list-item v-for="value, field in user" :key="field">
                     <md-input-container>
-                        <label>Phone Number</label>
-                        <md-input></md-input>
+                        <label>{{ field }}</label>
+                        <md-input v-model="user[field]"></md-input>
                     </md-input-container>
-                </md-list-item>
-                <md-list-item>
-                    <md-input-container>
-                        <label>Username</label>
-                        <md-input></md-input>
-                    </md-input-container>
-                </md-list-item>
-                <md-list-item>
-                    <md-switch id="my-test0" name="my-test0" class="md-primary">Switch 1</md-switch>
-                </md-list-item>
-                <md-list-item>
-                    <md-switch id="my-test1" name="my-test1" class="md-primary">Switch 2</md-switch>
-                </md-list-item>
-                <md-list-item>
-                    <md-switch id="my-test2" name="my-test2" class="md-primary">Switch 3</md-switch>
                 </md-list-item>
             </md-list>
         </form>
     </md-layout>
 </template>
 <script>
-    export default {};
+    import { mapGetters, mapActions } from 'vuex';
+
+    export default {
+        data() {
+            return {
+                user: {}
+            };
+        },
+        mounted() {
+            if (this.authenticated) {
+                this.getUsers();
+            }
+        },
+        computed: {
+            ...mapGetters({
+                authenticated: 'authenticated',
+                currentUser: 'currentUser'
+            })
+        },
+        watch: {
+            currentUser(user) {
+                this.user = user;
+            }
+        },
+        methods: {
+            ...mapActions([
+                'getUsers'
+            ])
+        }
+    };
 </script>
