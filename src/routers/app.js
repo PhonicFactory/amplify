@@ -2,8 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../pages/Home.vue';
 import Callback from '../pages/Callback.vue';
-// import Home from '../pages/Callback.vue';
-// import About from '../pages/About.vue';
+import Register from '../pages/Register.vue';
 
 Vue.use(VueRouter);
 
@@ -32,6 +31,11 @@ const router = new VueRouter({
             path: '/callback',
             name: 'auth-callback',
             component: Callback
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
         }
     ]
 });

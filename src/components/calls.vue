@@ -45,6 +45,13 @@
                 authenticated: 'authenticated'
             })
         },
+        watch: {
+            status(value) {
+                if (value === 'rejected') {
+                    this.$router.push({ name: 'register' });
+                }
+            }
+        },
         methods: {
             ...mapActions([
                 'getAllCalls'
