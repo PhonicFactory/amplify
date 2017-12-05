@@ -48,7 +48,7 @@ module.exports = {
     devServer: {
         contentBase: config.build.assetsRoot,
         // compress: true,
-        // port: 9000,
+        port: 8081,
         historyApiFallback: true
     }
 };

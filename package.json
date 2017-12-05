@@ -9,7 +9,7 @@
     "watch": "NODE_ENV=development webpack --progress --watch --hide-modules --config=./build/webpack.dev.conf",
     "hot": "NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
     "prod": "NODE_ENV=production webpack --config=./build/webpack.prod.conf",
-    "simple-server": "cd ./dist && python -m SimpleHTTPServer 8080"
+    "simple-server": "cd ./dist && python -m SimpleHTTPServer 8081"
   },
   "dependencies": {
     "auth0-js": "^8.11.3",
