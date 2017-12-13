@@ -26,7 +26,7 @@
                 <md-list-item>
                     <md-input-container>
                         <label>Phone</label>
-                        <md-input v-model="phone_number" placeholder="+19739416607"></md-input>
+                        <md-input v-model="phone_number" placeholder="+19082054444"></md-input>
                     </md-input-container>
                 </md-list-item>
                 <md-button type="submit">Submit</md-button>

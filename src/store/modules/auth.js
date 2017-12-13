@@ -4,7 +4,7 @@ import statuses from '../status-types';
 
 // Initial State
 const state = {
-    authenticated: null
+    authenticated: false
 };
 
 // Getters

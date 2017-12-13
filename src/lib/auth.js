@@ -44,7 +44,8 @@ export function logout() {
 export function handleAuthentication () {
     service.parseHash((e, authResult) => {
         console.log(authResult);
-        if (authResult && authResult.accessToken && authResult.idToken) {
+        // if (authResult && authResult.accessToken && authResult.idToken) {
+        if (authResult && authResult.accessToken) {
             setSession(authResult);
             return;
         }
