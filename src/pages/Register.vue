@@ -3,7 +3,8 @@
         <md-toolbar class="md-dense">
             <h2 class="md-title" style="flex: 1">Profile / Settings</h2>
         </md-toolbar>
-        <form @submit.prevent="submit">
+        <h2 v-if="registrationStatus === 'pending'">Loading...</h2>
+        <form v-else @submit.prevent="submit">
             <md-list>
                 <md-list-item>
                     <md-input-container>
@@ -45,6 +46,21 @@
                 last_name: null,
                 phone_number: null
             };
+        },
+        watch: {
+            registrationStatus(status) {
+                switch (status) {
+                    case 'success':
+                        this.$router.push({ name: 'profile' });
+                        break;
+                    default:
+                }
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'registrationStatus'
+            ])
         },
         methods: {
             ...mapActions([

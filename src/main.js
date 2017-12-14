@@ -69,6 +69,7 @@ new Vue({
             subscribe();
         },
         authenticated(to, from) {
+            console.log('authenticated state changed', to, from);
             // ignore initial flag
             if (from === null) {
                 return;

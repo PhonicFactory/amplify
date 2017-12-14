@@ -58,7 +58,7 @@ export function isAuthenticated () {
     // Use this as a pass through when making authenticated requests
     return new Promise((resolve, reject) => {
         // Check whether the current time is past the access token's expiry time
-        if (isValid) {
+        if (isValid()) {
             setAuthFlag(true);
             resolve();
             return;

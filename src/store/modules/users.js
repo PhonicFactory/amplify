@@ -6,6 +6,7 @@ import api from '../../lib/api';
 // Initial State
 const state = {
     status: 0,
+    registrationStatus: 0,
     items: [],
     limit: 0,
     page: 0,
@@ -16,7 +17,8 @@ const state = {
 // Getters
 const getters = {
     allUsers: state => state.items,
-    currentUser: state => state.items[0]
+    currentUser: state => state.items[0],
+    registrationStatus: state => statuses[state.registrationStatus]
 };
 
 // Actions
@@ -33,22 +35,10 @@ const actions = {
             });
     },
     createUser({ commit }, payload) {
-            // {
-            //     "email": "groman911@gmail.com",
-            //     "first_name": "Dude",
-            //     "last_name": "Man",
-            //     "phone_number": "+19739416607"
-            // }
-
+        commit(types.REQUEST_CREATE_USER);
         api.post('users', {}, payload)
-            .then((users) => {
-                console.log(users);
-                // const { items, limit, page, pages, total }
-                // commit(types.RECIEVE_USER, users);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+            .then(() => commit(types.RECEIVE_CREATE_USER))
+            .catch((e) => commit(types.RECEIVE_CREATE_USER_FAILURE, e))
     }
 };
 
@@ -60,6 +50,15 @@ const mutations = {
     [types.RECIEVE_USER](state, users) {
         state = Object.assign(state, users);
         state.status = 1;
+    },
+    [types.REQUEST_CREATE_USER](state) {
+        state.registrationStatus = 0;
+    },
+    [types.RECEIVE_CREATE_USER](state) {
+        state.registrationStatus = 1;
+    },
+    [types.RECEIVE_CREATE_USER_FAILURE](state, error) {
+        state.registrationStatus = 2;
     }
 };
 
