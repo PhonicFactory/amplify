@@ -2,7 +2,6 @@
     <md-layout>
         <md-layout md-column>
             <md-layout md-column style="max-height: 50px;">
-                  <md-button md-flex v-if="!authenticated" @click="loginClicked">Log In</md-button>
                   <md-button md-flex v-if="authenticated" @click="logoutClicked">Log Out</md-button>
             </md-layout>
             <md-layout md-flex>
@@ -17,7 +16,7 @@
 </template>
 <script>
     import { mapGetters } from 'vuex';
-    import { login, logout } from '../lib/auth';
+    import { logout } from '../lib/auth';
 
     export default {
         props: {
@@ -37,8 +36,7 @@
             }
         },
         methods: {
-            loginClicked: login,
-            logoutClicked: logout,
+            logoutClicked: logout
         }
     };
 </script>

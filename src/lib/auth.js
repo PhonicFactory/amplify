@@ -38,7 +38,7 @@ export function logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    setAuthFlag(false);
+    window.location.reload();
 }
 
 export function handleAuthentication () {
@@ -49,6 +49,7 @@ export function handleAuthentication () {
             setSession(authResult);
             return;
         }
+        // TODO: store authenticationStatus key in vuex to handle failures/pending auth
         console.log('Error Logging in', e);
         setAuthFlag(false);
     });

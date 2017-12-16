@@ -49,16 +49,12 @@ new Vue({
     router,
     store,
     created() {
-        // Set authenticated if session exists
-        setAuthenticated();
-
         // Register service worker
         swRegister();
     },
     computed: {
         ...mapGetters({
-            swRegistration: 'serviceWorkerRegistration',
-            authenticated: 'authenticated'
+            swRegistration: 'serviceWorkerRegistration'
         })
     },
     watch: {
@@ -67,18 +63,6 @@ new Vue({
 
             // Ask for push notification permission
             subscribe();
-        },
-        authenticated(to, from) {
-            console.log('authenticated state changed', to, from);
-            // ignore initial flag
-            if (from === null) {
-                return;
-            }
-            if (to) {
-                this.$router.push({ name: 'home' });
-            } else {
-                window.location.reload();
-            }
         }
     }
 }).$mount('#app');
