@@ -9,14 +9,18 @@
         <template v-if="authenticated">
             <md-list v-if="status === 'success'">
                 <md-list-item v-for="call in calls" :key="call.id">
-                    <md-avatar>
-                        <!-- <img :src="call.user.avatar" alt="People"> -->
-                    </md-avatar>
-                    <span>{{ convo.user.name }}</span>
+                    <md-icon class="md-primary">phone</md-icon>
+                    <div class="md-list-text-container">
+                        <span>{{ call.from_number }}</span>
+                        <span>at {{ call.created_at }}</span>
+                    </div>
                     <md-button class="md-icon-button md-list-action">
                         <md-icon class="md-primary">chat_bubble</md-icon>
                     </md-button>
                     <md-divider class="md-inset"></md-divider>
+                </md-list-item>
+                <md-list-item v-if="!calls.length">
+                    No Calls
                 </md-list-item>
             </md-list>
             <md-layout v-if="status === 'pending'" md-align="center" md-vertical-align="center">
