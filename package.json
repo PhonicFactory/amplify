@@ -9,11 +9,12 @@
     "watch": "NODE_ENV=development webpack --progress --watch --hide-modules --config=./build/webpack.dev.conf",
     "hot": "NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
     "prod": "NODE_ENV=production webpack --config=./build/webpack.prod.conf",
-    "simple-server": "cd ./dist && python -m SimpleHTTPServer 8081"
+    "server": "node ./server.js"
   },
   "dependencies": {
     "auth0-js": "^8.11.3",
     "axios": "^0.17.0",
+    "express": "^4.16.2",
     "vue": "^2.5.3",
     "vue-material": "^0.8.1",
     "vue-router": "^3.0.1",

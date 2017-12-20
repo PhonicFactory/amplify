@@ -25,7 +25,7 @@ Build for prod
 yarn prod
 ```
 
-Run simple http server
+Run server
 ```
-yarn simple-server
+yarn server
 ```
