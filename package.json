@@ -10,7 +10,7 @@
     "hot": "NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
     "prod": "NODE_ENV=production webpack --config=./build/webpack.prod.conf",
     "server": "node ./server.js",
-    "deploy": "yarn prod && yarn server"
+    "deploy": "yarn && yarn prod && yarn server"
   },
   "dependencies": {
     "auth0-js": "^8.11.3",
