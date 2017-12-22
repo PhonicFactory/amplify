@@ -1,5 +1,5 @@
+require('dotenv').config()
 const express = require('express');
-const config = require('./config');
 const app = express();
 
 app.use(express.static(`${__dirname}/dist`));
@@ -10,6 +10,6 @@ app.get('*', (req, res) => {
 
 /* istanbul ignore next */
 if (!module.parent) {
-    app.listen(config.dev.port);
-    console.log(`Express started on port ${config.dev.port}`);
+    app.listen(process.env.PORT);
+    console.log(`Express started on port ${process.env.PORT}`);
 }

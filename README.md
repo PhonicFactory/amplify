@@ -1,5 +1,10 @@
 ## Getting Started
 
+Configure
+```
+cp .env.example .env
+```
+
 Install
 ```
 yarn

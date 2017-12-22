@@ -1,8 +1,8 @@
+const path = require('path');
 const merge = require('webpack-merge');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const config = require('../config');
 const baseWebpackConfig = require('./webpack.base.conf')
-const assetsRoot = config.build.assetsRoot;
+const assetRoot = path.resolve(__dirname, process.env.ASSET_ROOT);
 
 module.exports = merge(baseWebpackConfig, {
     plugins: [
@@ -15,15 +15,48 @@ module.exports = merge(baseWebpackConfig, {
             // staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
             verbose: true,
             staticFileGlobs: [
-                `${assetsRoot}/**.html`,
-                `${assetsRoot}/manifest.json`,
-                // `${assetsRoot}/images/**.*`,
-                // `${assetsRoot}/fonts/*/**.*`,
-                `${assetsRoot}/js/**.js`,
-                // `${assetsRoot}/css/**.css`
+                `${assetRoot}/**.html`,
+                `${assetRoot}/manifest.json`,
+                // `${assetRoot}/images/**.*`,
+                // `${assetRoot}/fonts/*/**.*`,
+                `${assetRoot}/js/**.js`,
+                // `${assetRoot}/css/**.css`
             ],
-            stripPrefix: `${assetsRoot}/`,
-            importScripts: ['/sw-import.js']
-        }),
+            stripPrefix: `${assetRoot}/`,
+            importScripts: ['/sw-import.js'],
+            runtimeCaching: [
+                {
+                    urlPattern: /fonts\.gstatic\.com\/(.*)/,
+                    handler: 'cacheFirst',
+                    options: {
+                        cache: {
+                            name: 'google-font-file-cache',
+                            maxEntries: 10
+                        }
+                    }
+                },
+                {
+                    urlPattern: /fonts\.googleapis\.com\/css/,
+                    handler: 'fastest',
+                    options: {
+                        cache: {
+                            name: 'google-font-style-cache',
+                            maxEntries: 1
+                        }
+                    }
+                },
+                // TODO: CACHE API RESPONSES
+                // {
+                //     urlPattern: /http(s)?:\/\/o\.aolcdn\.com\/images\/dims/
+                //     handler: 'cacheFirst',
+                //     options: {
+                //         cache: {
+                //             name: 'et-api-cache',
+                //             maxEntries: 40
+                //         }
+                //     }
+                // },
+            ]
+        })
     ]
 });

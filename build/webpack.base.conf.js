@@ -1,7 +1,7 @@
+require('dotenv').config()
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const config = require('../config');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -10,11 +10,9 @@ function resolve (dir) {
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: config.build.assetsRoot,
+        path: path.resolve(__dirname, process.env.ASSET_ROOT),
         filename: 'js/bundle.js',
-        publicPath: process.env.NODE_ENV === 'production'
-            ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
+        publicPath: '/'
     },
     resolve: {
         alias: {
@@ -44,11 +42,5 @@ module.exports = {
                 from: './static'
             }
         ])
-    ],
-    devServer: {
-        contentBase: config.build.assetsRoot,
-        // compress: true,
-        port: config.dev.port,
-        historyApiFallback: true
-    }
+    ]
 };

@@ -5,7 +5,7 @@ const service = new WebAuth({
     domain: "eartickling.auth0.com",
     clientID: "vMXpi2lDi1VwOMYuM8dlCJ4X3k4aoz9e",
     audience: "http://api.eartickling.com",
-    redirectUri: 'http://localhost:8081/callback',
+    redirectUri: process.env.AUTH_REDIRECT_URI,
     responseType: 'token id_token',
     scope: 'openid'
 });

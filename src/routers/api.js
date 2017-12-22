@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router';
 
-// TODO: Configure this in .env file
-const HOST = 'http://ec2-52-15-174-193.us-east-2.compute.amazonaws.com/api';
+const HOST = process.env.API_HOST;
 
 export default new VueRouter({
     routes: [
