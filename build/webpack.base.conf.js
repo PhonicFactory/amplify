@@ -2,9 +2,10 @@ require('dotenv').config()
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+    return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new Dotenv(),
         new CopyWebpackPlugin([
             {
                 from: './static'

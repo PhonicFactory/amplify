@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
+import config from '../../config';
 
-const HOST = process.env.API_HOST;
+const HOST = config.apiHost;
 
 export default new VueRouter({
     routes: [

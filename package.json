@@ -16,6 +16,7 @@
     "auth0-js": "^8.11.3",
     "axios": "^0.17.0",
     "dotenv": "^4.0.0",
+    "dotenv-webpack": "^1.5.4",
     "express": "^4.16.2",
     "vue": "^2.5.3",
     "vue-material": "^0.8.1",
