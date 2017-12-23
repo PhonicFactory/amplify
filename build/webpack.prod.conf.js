@@ -1,11 +1,13 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
 const assetRoot = path.resolve(__dirname, process.env.ASSET_ROOT);
 
 module.exports = merge(baseWebpackConfig, {
     plugins: [
+        new UglifyJsPlugin(),
         new SWPrecacheWebpackPlugin({
             cacheId: 'vue-pwa-starter',
             // dontCacheBustUrlsMatching: /\.\w{8}\./,
@@ -17,7 +19,7 @@ module.exports = merge(baseWebpackConfig, {
             staticFileGlobs: [
                 `${assetRoot}/**.html`,
                 `${assetRoot}/manifest.json`,
-                // `${assetRoot}/images/**.*`,
+                `${assetRoot}/images/**.*`,
                 // `${assetRoot}/fonts/*/**.*`,
                 `${assetRoot}/js/**.js`,
                 // `${assetRoot}/css/**.css`
