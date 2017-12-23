@@ -36,12 +36,12 @@ module.exports = merge(baseWebpackConfig, {
                     }
                 },
                 {
-                    urlPattern: /fonts\.googleapis\.com\/css/,
+                    urlPattern: /fonts\.googleapis\.com\/(.*)/,
                     handler: 'fastest',
                     options: {
                         cache: {
                             name: 'google-font-style-cache',
-                            maxEntries: 1
+                            maxEntries: 10
                         }
                     }
                 },
