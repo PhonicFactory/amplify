@@ -8,9 +8,9 @@ export function register() {
                 // Handle service worker updated (ie, alert the user to reload)
                 registration.onupdatefound = () => {
                     console.log('service worker update found');
-                    // if (window.confirm("Update Available")) {
-                    //     window.location.reload();
-                    // }
+                    if (window.confirm("Update Available")) {
+                        window.location.reload();
+                    }
                 };
                 // Detect document focus and check for sw updates on the server.
                 // Useful for when app is opened, but not reloaded

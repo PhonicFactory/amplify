@@ -1,0 +1,6 @@
+{
+    "sourceDir": "./",
+    "script": "server.js",
+    "outFile": "logs/out.log",
+    "errFile": "logs/err.log"
+}

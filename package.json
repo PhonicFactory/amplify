@@ -10,7 +10,8 @@
     "hot": "NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
     "prod": "NODE_ENV=production webpack --config=./build/webpack.prod.conf",
     "server": "node ./server.js",
-    "deploy": "yarn && yarn prod && yarn server"
+    "deploy": "yarn && yarn prod && forever start -d ./forever.json",
+    "stop": "forever stopall"
   },
   "dependencies": {
     "auth0-js": "^8.11.3",
@@ -30,6 +31,7 @@
     "css-loader": "^0.28.7",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
+    "forever": "^0.15.3",
     "style-loader": "^0.19.0",
     "sw-precache-webpack-plugin": "^0.11.4",
     "sw-toolbox": "^3.6.0",
