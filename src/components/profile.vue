@@ -3,8 +3,7 @@
         <md-toolbar class="md-dense">
             <h2 class="md-title" style="flex: 1">Profile / Settings</h2>
         </md-toolbar>
-        <md-layout>
-            <form>
+        <md-layout md-tag="form">
                 <md-list>
                     <md-list-item>
                         <md-avatar class="md-large">
@@ -17,13 +16,16 @@
                             <md-input v-model="user[field]"></md-input>
                         </md-input-container>
                     </md-list-item>
+                    <md-list-item>
+                        <md-button md-flex v-if="authenticated" @click="logoutClicked">Log Out</md-button>
+                    </md-list-item>
                 </md-list>
-            </form>
         </md-layout>
     </md-layout>
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex';
+    import { logout } from '../lib/auth';
 
     export default {
         data() {
@@ -50,7 +52,8 @@
         methods: {
             ...mapActions([
                 'getUsers'
-            ])
+            ]),
+            logoutClicked: logout
         }
     };
 </script>

@@ -1,10 +1,19 @@
+<style scoped>
+    .md-bottom-bar {
+        z-index: 10;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .page-container {
+        padding-bottom: 56px; // TODO: Set up scss
+    }
+</style>
 <template>
     <md-layout>
         <md-layout md-column>
-            <md-layout md-column style="max-height: 50px;">
-                  <md-button md-flex v-if="authenticated" @click="logoutClicked">Log Out</md-button>
-            </md-layout>
-            <md-layout md-flex>
+            <md-layout md-flex class="page-container">
                 <component :is="tab" />
             </md-layout>
             <md-bottom-bar md-theme="inverse">
@@ -16,7 +25,6 @@
 </template>
 <script>
     import { mapGetters } from 'vuex';
-    import { logout } from '../lib/auth';
 
     export default {
         props: {
@@ -25,18 +33,10 @@
                 type: String
             }
         },
-        computed: {
-            ...mapGetters({
-                authenticated: 'authenticated'
-            })
-        },
         created() {
             if(!this.tab) {
                 this.$router.push({ name: 'calls' });
             }
-        },
-        methods: {
-            logoutClicked: logout
         }
     };
 </script>

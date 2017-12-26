@@ -1,3 +1,8 @@
+<style scoped>
+    .md-speed-dial {
+        margin-bottom: 56px;
+    }
+</style>
 <template>
     <md-layout :md-column="true">
         <md-toolbar class="md-dense">
@@ -27,6 +32,18 @@
                 <md-spinner md-indeterminate />
             </md-layout>
             <h2 v-if="status === 'reject'">Error retrieving calls</h2>
+            <md-speed-dial md-direction="top" class="md-fab-bottom-right">
+                <md-button class="md-fab" md-fab-trigger md-theme="inverse">
+                    <md-icon md-icon-morph>close</md-icon>
+                    <md-icon>add</md-icon>
+                </md-button>
+                <md-button class="md-fab md-primary md-mini md-clean">
+                    <md-icon>call</md-icon>
+                </md-button>
+                <md-button class="md-fab md-primary md-mini md-clean">
+                    <md-icon>message</md-icon>
+                </md-button>
+            </md-speed-dial>
         </template>
         <template v-else>
             <h2>You need to log in</h2>
