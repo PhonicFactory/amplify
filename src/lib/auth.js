@@ -1,15 +1,18 @@
 import { WebAuth } from 'auth0-js';
+import axios from 'axios';
 import store from '../store';
-import config from '../../config';
+// import config from '../../config';
+import router from '../routers/auth';
 
-const service = new WebAuth({
-    domain: "eartickling.auth0.com",
-    clientID: "vMXpi2lDi1VwOMYuM8dlCJ4X3k4aoz9e",
-    audience: "http://api.eartickling.com",
-    redirectUri: config.authRedirectUri,
-    responseType: 'token id_token',
-    scope: 'openid'
-});
+const service = {};
+// const service = new WebAuth({
+    // domain: 'eartickling.auth0.com',
+    // clientID: 'vMXpi2lDi1VwOMYuM8dlCJ4X3k4aoz9e',
+    // audience: 'http://api.eartickling.com',
+    // redirectUri: config.authRedirectUri,
+    // responseType: 'token id_token',
+    // scope: 'openid'
+// });
 
 function setAuthFlag(bool) {
     store.dispatch('setAuthenticated', bool);
@@ -31,7 +34,40 @@ function isValid() {
 }
 
 export function login() {
-    service.authorize();
+    // service.authorize();
+    //
+    // router.get()
+    // store.dispatch('login');
+    console.log('Logging in');
+
+    // Send CODE
+
+    // axios.post(router.match({ name: 'start' }).path, {
+    //     phone_number: '+13476019737'
+    // })
+    // .then((response) => {
+    //     console.log(response);
+    // });
+
+
+    // Validate Code
+    axios.post(router.match({ name: 'validate' }).path, {
+        password: '143263',
+        username: '+13476019737'
+        // client_id: 'vMXpi2lDi1VwOMYuM8dlCJ4X3k4aoz9e',
+        // connection: 'sms',
+        // grant_type: 'password',
+        // phone_number: '+13476019737',
+        // password: '681256',
+        // scope: 'openid profile email'
+    })
+    .then((response) => {
+        console.log(response);
+        //681256
+    });
+
+
+
 }
 
 export function logout() {

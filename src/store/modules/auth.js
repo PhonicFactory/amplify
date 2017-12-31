@@ -1,6 +1,7 @@
 /* eslint no-shadow: 0 */
 import * as types from '../mutation-types';
 import statuses from '../status-types';
+import auth from '../../lib/auth';
 
 // Initial State
 const state = {
@@ -15,8 +16,14 @@ const getters = {
 
 // Actions
 const actions = {
+    login({ commit }) {
+        // commit(types.SET_AUTHENTICATED, authenticated);
+        //
+    },
     setAuthenticated({ commit }, authenticated) {
-        commit(types.SET_AUTHENTICATED, authenticated);
+        // commit(types.SET_AUTHENTICATED, authenticated);
+
+
     }
 };
 
