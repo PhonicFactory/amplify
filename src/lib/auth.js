@@ -1,4 +1,3 @@
-import { WebAuth } from 'auth0-js';
 import axios from 'axios';
 import store from '../store';
 import router from '../routers/auth';
