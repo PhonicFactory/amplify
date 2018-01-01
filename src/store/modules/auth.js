@@ -6,24 +6,23 @@ import auth from '../../lib/auth';
 // Initial State
 const state = {
     authenticated: false,
+    phone_number: null,
     status: 0
 };
 
 // Getters
 const getters = {
-    authenticated: state => state.authenticated
+    authenticated: state => state.authenticated,
+    authPhoneNumber: state => state.phone_number
 };
 
 // Actions
 const actions = {
-    login({ commit }) {
-        // commit(types.SET_AUTHENTICATED, authenticated);
-        //
+    authCodeRequested({ commit }, { phone_number }) {
+        commit(types.AUTH_CODE_REQUESTED, phone_number);
     },
     setAuthenticated({ commit }, authenticated) {
-        // commit(types.SET_AUTHENTICATED, authenticated);
-
-
+        commit(types.SET_AUTHENTICATED, authenticated);
     }
 };
 
@@ -31,6 +30,9 @@ const actions = {
 const mutations = {
     [types.SET_AUTHENTICATED](state, authenticated) {
         state.authenticated = authenticated;
+    },
+    [types.AUTH_CODE_REQUESTED](state, phone_number) {
+        state.phone_number = phone_number;
     }
 };
 
