@@ -23,6 +23,7 @@ class Api {
             config => {
                 console.log(config);
                 config.headers.Authorization = `Bearer ${getAccessToken()}`;
+                config.headers.Accept = 'audio/wav, application/json';
                 return config;
             },
             error => Promise.reject(error)
