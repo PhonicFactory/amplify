@@ -14,6 +14,10 @@
         <template v-if="authenticated">
             <md-list v-if="status === 'success'">
                 <md-list-item v-for="call in calls" :key="call.id">
+                    <audio controls>
+                        <source :src="call.audioFile" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
                     <md-icon class="md-primary">phone</md-icon>
                     <div class="md-list-text-container">
                         <span>{{ call.from_number }}</span>
