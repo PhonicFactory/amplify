@@ -14,7 +14,6 @@ class Api {
             ({ config, data, headers, request, status, statusText }) => {
                 console.log(data);
                 // Check 401 status
-                //
                 return data;
             },
             error => Promise.reject(error)
@@ -23,6 +22,7 @@ class Api {
             config => {
                 console.log(config);
                 config.headers.Authorization = `Bearer ${getAccessToken()}`;
+                config.headers.Accept = 'audio/wav, application/json';
                 return config;
             },
             error => Promise.reject(error)
