@@ -13,13 +13,18 @@
         </md-toolbar>
         <template v-if="authenticated">
             <md-list v-if="status === 'success'">
+                <md-list-item v-if="activeCall">
+                    <audio controls>
+                      <source :src="activeCall" type="audio/wav">
+                    </audio>
+                </md-list-item>
                 <md-list-item v-for="call in calls" :key="call.id">
                     <md-icon class="md-primary">phone</md-icon>
                     <div class="md-list-text-container">
                         <span>{{ call.from_number }}</span>
                         <span>at {{ call.created_at }}</span>
                     </div>
-                    <md-button class="md-icon-button md-list-action">
+                    <md-button class="md-icon-button md-list-action" @click="getCall(call.id)">
                         <md-icon class="md-primary">chat_bubble</md-icon>
                     </md-button>
                     <md-divider class="md-inset"></md-divider>
@@ -61,6 +66,7 @@
         },
         computed: {
             ...mapGetters({
+                activeCall: 'activeCall',
                 calls: 'allCalls',
                 status: 'allCallsStatus',
                 authenticated: 'authenticated'
@@ -75,7 +81,8 @@
         },
         methods: {
             ...mapActions([
-                'getAllCalls'
+                'getAllCalls',
+                'getCall'
             ])
         }
     };
