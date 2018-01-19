@@ -5,7 +5,7 @@ import api from '../../lib/api';
 
 // Initial State
 const state = {
-    status: 0,
+    status: null,
     activeCall: null,
     items: [],
     // limit: 0,
@@ -25,7 +25,7 @@ const getters = {
 const actions = {
     getAllCalls({ commit }) {
         commit(types.REQUEST_CALLS);
-        api.get('calls', {})
+        api.get('calls')
             .then((calls) => {
                 commit(types.RECEIVE_CALLS, calls);
             })
@@ -35,23 +35,24 @@ const actions = {
             });
     },
     getCall({ commit }, id) {
-        // commit(types.REQUEST_CALL);
-        api.get('call', { id })
+        api.get('call', { id }, {}, {
+                headers: { 'Accept': 'audio/wav' },
+                responseType: 'blob',
+            })
             .then((call) => {
-
-
-                // commit(types.RECEIVE_CALL, call);
-                var blob = new Blob([call], { type: 'audio/wav' });
                 var reader = new FileReader();
-                reader.readAsDataURL(blob);
+                reader.readAsDataURL(call);
                 reader.onloadend = () => {
-                  commit(types.RECEIVE_CALL, reader.result);
+                    commit(types.RECEIVE_CALL, reader.result);
                 }
             })
             .catch((e) => {
                 console.log(e);
                 // commit(types.RECEIVE_CALL_FAILURE);
             });
+    },
+    clearActiveCall({ commit }) {
+        commit(types.CLEAR_ACTIVE_CALL);
     }
 };
 
@@ -61,7 +62,6 @@ const mutations = {
         state.status = 0;
     },
     [types.RECEIVE_CALLS](state, calls) {
-        // state = Object.assign(state, calls);
         state.items = calls.items;
         state.status = 1;
     },
@@ -70,6 +70,9 @@ const mutations = {
     },
     [types.RECEIVE_CALL](state, call) {
         state.activeCall = call;
+    },
+    [types.CLEAR_ACTIVE_CALL](state) {
+        state.activeCall = null;
     }
 };
 

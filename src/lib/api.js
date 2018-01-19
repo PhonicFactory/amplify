@@ -22,7 +22,7 @@ class Api {
             config => {
                 console.log(config);
                 config.headers.Authorization = `Bearer ${getAccessToken()}`;
-                config.headers.Accept = 'audio/wav, application/json';
+                // config.headers.Accept = 'audio/wav, application/json';
                 return config;
             },
             error => Promise.reject(error)
@@ -34,11 +34,12 @@ class Api {
      * @param  {String} name
      * @param  {Object} params
      * @param  {Object} query
+     * @param  {Object} config
      * @return {Promise}
      */
-    get(name, params = {}, query = {}) {
+    get(name, params = {}, query = {}, config = {}) {
         try {
-            return this.http.get(`${router.match({ name, params, query }).fullPath}/`);
+            return this.http.get(`${router.match({ name, params, query }).fullPath}/`, config);
         } catch (e) {
             return Promise.reject('Route Not Found');
         }
@@ -49,12 +50,29 @@ class Api {
      * @param  {String} name
      * @param  {Object} params
      * @param  {Object} body
+     * @param  {Object} config
      * @return {Promise}
      */
-    post(name, params = {}, body = {}, query = {}) {
+    post(name, params = {}, body = {}, query = {}, config = {}) {
         try {
             // return this.http.post('http://ec2-52-15-174-193.us-east-2.compute.amazonaws.com/api/users/', body);
-            return this.http.post(`${router.match({ name, params, query }).fullPath}/`, body);
+            return this.http.post(`${router.match({ name, params, query }).fullPath}/`, body, config);
+        } catch (e) {
+            return Promise.reject('Route Not Found');
+        }
+    }
+
+    /**
+     * DELETE requested api route by name
+     * @param  {String} name
+     * @param  {Object} params
+     * @param  {Object} query
+     * @param  {Object} config
+     * @return {Promise}
+     */
+    delete(name, params = {}, query = {}, config = {}) {
+        try {
+            return this.http.delete(`${router.match({ name, params, query }).fullPath}/`, config);
         } catch (e) {
             return Promise.reject('Route Not Found');
         }
