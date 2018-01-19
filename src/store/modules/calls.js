@@ -38,7 +38,15 @@ const actions = {
         // commit(types.REQUEST_CALL);
         api.get('call', { id })
             .then((call) => {
-                commit(types.RECEIVE_CALL, call);
+
+
+                // commit(types.RECEIVE_CALL, call);
+                var blob = new Blob([call], { type: 'audio/wav' });
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = () => {
+                  commit(types.RECEIVE_CALL, reader.result);
+                }
             })
             .catch((e) => {
                 console.log(e);
@@ -61,7 +69,6 @@ const mutations = {
         state.status = 2;
     },
     [types.RECEIVE_CALL](state, call) {
-        // state = Object.assign(state, calls);
         state.activeCall = call;
     }
 };
