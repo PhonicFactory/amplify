@@ -6,15 +6,17 @@ import api from '../../lib/api';
 // Initial State
 const state = {
     status: 0,
+    activeCall: null,
     items: [],
-    limit: 0,
-    page: 0,
-    pages: 0,
-    total: 0,
+    // limit: 0,
+    // page: 0,
+    // pages: 0,
+    // total: 0,
 };
 
 // Getters
 const getters = {
+    activeCall: state => state.activeCall,
     allCalls: state => state.items,
     allCallsStatus: state => statuses[state.status]
 };
@@ -31,6 +33,25 @@ const actions = {
                 console.log(e);
                 commit(types.RECEIVE_CALLS_FAILURE);
             });
+    },
+    getCall({ commit }, id) {
+        // commit(types.REQUEST_CALL);
+        api.get('call', { id })
+            .then((call) => {
+
+
+                // commit(types.RECEIVE_CALL, call);
+                var blob = new Blob([call], { type: 'audio/wav' });
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = () => {
+                  commit(types.RECEIVE_CALL, reader.result);
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+                // commit(types.RECEIVE_CALL_FAILURE);
+            });
     }
 };
 
@@ -40,11 +61,15 @@ const mutations = {
         state.status = 0;
     },
     [types.RECEIVE_CALLS](state, calls) {
-        state = Object.assign(state, calls);
+        // state = Object.assign(state, calls);
+        state.items = calls.items;
         state.status = 1;
     },
     [types.RECEIVE_CALLS_FAILURE](state) {
         state.status = 2;
+    },
+    [types.RECEIVE_CALL](state, call) {
+        state.activeCall = call;
     }
 };
 
