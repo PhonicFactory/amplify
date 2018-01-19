@@ -46,7 +46,10 @@ const router = new VueRouter({
         {
             path: '/register',
             name: 'register',
-            component: Register
+            component: Register,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/login',
