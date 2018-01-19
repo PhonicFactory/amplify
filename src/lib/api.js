@@ -12,7 +12,7 @@ class Api {
             // response => response,
             // ({ data }) => {
             ({ config, data, headers, request, status, statusText }) => {
-                console.log(data);
+                // console.log(data);
                 // Check 401 status
                 return data;
             },
@@ -38,8 +38,6 @@ class Api {
      */
     get(name, params = {}, query = {}) {
         try {
-            // why is the trailing slash getting stripped???!!!
-            // return this.http.get('http://ec2-52-15-174-193.us-east-2.compute.amazonaws.com/api/users/')
             return this.http.get(`${router.match({ name, params, query }).fullPath}/`);
         } catch (e) {
             return Promise.reject('Route Not Found');
