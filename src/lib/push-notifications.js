@@ -7,13 +7,12 @@ function setSubscription(subscription) {
 }
 
 function subscribeNew() {
-
     // https://github.com/GoogleChromeLabs/web-push-codelab/blob/master/app/scripts/main.js
     // https://developers.google.com/web/updates/2016/03/web-push-encryption
     store.getters.pushManager
         .subscribe({
             userVisibleOnly: true,
-            applicationServerKey: urlB64ToUint8Array('BP4hOBy7KbKMhivtsyDyIBfrIQkD7BDCK0M8eiL9qbraBe-5rnT_-lRe_7REwhr5fMZwlhrSC9oQyyjjdmtuM6I')
+            applicationServerKey: urlB64ToUint8Array('BJjJDKQgGQVu6oqir1m2xFrKaR-8vOIlXHNAuRPIYL0RHhMomLSwxsi1nHEly4t8q4MHLnJLRQicnKKxpBga3qg')
         })
         .then(subscription => setSubscription(subscription.toJSON()))
         .catch((e) => {
