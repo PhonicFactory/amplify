@@ -1,6 +1,6 @@
 {
-  "short_name": "et-fe",
-  "name": "ET",
+  "short_name": "amplify",
+  "name": "Amplify",
   "gcm_sender_id": "664167138565",
   "permissions": ["gcm"],
   "icons": [
