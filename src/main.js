@@ -23,7 +23,7 @@ Vue.use(VueMaterial)
 Vue.material.registerTheme({
     default: {
         primary: {
-            color: 'orange',
+            color: 'blue',
             hue: 800
         },
         accent: 'red',
@@ -33,12 +33,12 @@ Vue.material.registerTheme({
     inverse: {
         primary: 'white',
         accent: {
-            color: 'orange',
+            color: 'blue',
             hue: 800
         },
         warn: 'red',
         background: {
-            color: 'orange',
+            color: 'blue',
             hue: 800
         }
     }
