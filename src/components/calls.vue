@@ -24,7 +24,7 @@
                 </md-dialog-actions>
             </md-dialog>
             <md-list-item v-for="call in calls" :key="call.id">
-                <md-icon class="md-primary">phone</md-icon>
+                <md-icon class="md-primary">person_add</md-icon>
                 <div class="md-list-text-container">
                     <span>{{ call.from_number }}</span>
                     <span>at {{ call.created_at }}</span>
