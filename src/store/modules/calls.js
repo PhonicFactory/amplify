@@ -34,8 +34,9 @@ const actions = {
                 commit(types.RECEIVE_CALLS_FAILURE);
             });
     },
-    getCall({ commit }, id) {
-        api.get('call', { id }, {}, {
+    getCallAudio({ commit }, call) {
+        commit(types.REQUEST_CALL_AUDIO, call);
+        api.get('call', { id: call.id }, {}, {
                 headers: { 'Accept': 'audio/wav' },
                 responseType: 'blob',
             })
@@ -43,12 +44,12 @@ const actions = {
                 var reader = new FileReader();
                 reader.readAsDataURL(call);
                 reader.onloadend = () => {
-                    commit(types.RECEIVE_CALL, reader.result);
+                    commit(types.RECEIVE_CALL_AUDIO, reader.result);
                 }
             })
             .catch((e) => {
                 console.log(e);
-                // commit(types.RECEIVE_CALL_FAILURE);
+                // commit(types.RECEIVE_CALL_AUDIO_FAILURE);
             });
     },
     clearActiveCall({ commit }) {
@@ -68,8 +69,11 @@ const mutations = {
     [types.RECEIVE_CALLS_FAILURE](state) {
         state.status = 2;
     },
-    [types.RECEIVE_CALL](state, call) {
+    [types.REQUEST_CALL_AUDIO](state, call) {
         state.activeCall = call;
+    },
+    [types.RECEIVE_CALL_AUDIO](state, audio) {
+        state.activeCall = Object.assign({}, state.activeCall, { audio });
     },
     [types.CLEAR_ACTIVE_CALL](state) {
         state.activeCall = null;
