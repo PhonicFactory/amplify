@@ -26,7 +26,10 @@ Vue.material.registerTheme({
             color: 'blue',
             hue: 800
         },
-        accent: 'red',
+        accent: {
+            color: 'blue',
+            hue: 500
+        },
         warn: 'red',
         background: 'white'
     },

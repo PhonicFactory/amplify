@@ -1,15 +1,13 @@
 <template>
     <md-layout :md-column="true">
-        <md-toolbar class="md-dense">
+        <md-toolbar class="md-large md-accent">
+            <md-avatar class="md-large">
+                <img src="https://placeimg.com/64/64/people/1" alt="People">
+            </md-avatar>
             <h2 class="md-title" style="flex: 1">Profile / Settings</h2>
         </md-toolbar>
         <md-layout md-tag="form">
             <md-list>
-                <md-list-item>
-                    <md-avatar class="md-large">
-                        <img src="https://placeimg.com/64/64/people/1" alt="People">
-                    </md-avatar>
-                </md-list-item>
                 <md-list-item v-for="value, field in user" :key="field">
                     <md-input-container>
                         <label>{{ field }}</label>
@@ -37,9 +35,7 @@
             };
         },
         mounted() {
-            if (this.authenticated) {
-                this.getUsers();
-            }
+            this.getUsers();
         },
         computed: {
             ...mapGetters({
