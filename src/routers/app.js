@@ -21,24 +21,6 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/calls',
-            name: 'calls',
-            component: Home,
-            props: { tab: 'calls' },
-            meta: {
-                requiresAuth: true
-            }
-        },
-        {
-            path: '/profile',
-            name: 'profile',
-            component: Home,
-            props: { tab: 'profile' },
-            meta: {
-                requiresAuth: true
-            }
-        },
-        {
             path: '/callback',
             name: 'auth-callback',
             component: Callback
