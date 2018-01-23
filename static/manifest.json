@@ -1,7 +1,7 @@
 {
   "short_name": "amplify",
   "name": "Amplify",
-  "gcm_sender_id": "664167138565",
+  "gcm_sender_id": "197798581236",
   "permissions": ["gcm"],
   "icons": [
     {
