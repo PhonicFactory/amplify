@@ -1,5 +1,5 @@
 import store from '../store';
-import { urlB64ToUint8Array } from './helpers';
+import { urlBase64ToUint8Array } from './helpers';
 
 function setSubscription(subscription) {
     console.log(subscription);
@@ -12,7 +12,7 @@ function subscribeNew() {
     store.getters.pushManager
         .subscribe({
             userVisibleOnly: true,
-            applicationServerKey: urlB64ToUint8Array('BDMSHpw-NahrF4bo9OyFOR8cv9Og1mGHfYCHuDCTeBmZJfDKdBeJ2rQvtPio_ZvrMGT0Om2scRGx28qaQHu5Zbk')
+            applicationServerKey: urlBase64ToUint8Array('BDMSHpw-NahrF4bo9OyFOR8cv9Og1mGHfYCHuDCTeBmZJfDKdBeJ2rQvtPio_ZvrMGT0Om2scRGx28qaQHu5Zbk')
         })
         .then(subscription => setSubscription(subscription.toJSON()))
         .catch((e) => {
