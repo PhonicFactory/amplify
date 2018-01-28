@@ -4,10 +4,10 @@ files:
   - source: /
     destination: /home/ubuntu/amplify
 permissions:
-- object: /
-   pattern: "**"
-   owner: ubuntu
-   group: ubuntu
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
 hooks:
   AfterInstall:
     - location: scripts/install_dependencies
