@@ -4,11 +4,13 @@ files:
   - source: /
     destination: /home/ubuntu/amplify
 hooks:
-  BeforeInstall:
+  AfterInstall:
     - location: scripts/install_dependencies
       timeout: 300
       runas: root
-  ApplicationStart:
+    - location: scripts/deploy_build
+      timeout: 300
+      runas: root
     - location: scripts/start_server
       timeout: 300
       runas: root

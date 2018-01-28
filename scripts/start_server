@@ -1,2 +1,2 @@
 #!/bin/bash
-./node_modules/.bin/forever start -d ./forever.json
+cd /home/ubuntu/amplify && ./node_modules/.bin/forever start -d ./forever.json
