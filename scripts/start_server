@@ -1,3 +1,3 @@
 #!/bin/bash
-source ~/.bashrc
+source ~/.bash_profile
 cd /home/ubuntu/amplify && ./node_modules/.bin/forever start -d ./forever.json
