@@ -2,16 +2,24 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu
+    destination: /home/ubuntu/amplify
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
 hooks:
   AfterInstall:
     - location: scripts/install_dependencies
       timeout: 300
-      runas: root
+      runas: ubuntu
+    - location: scripts/deploy_build
+      timeout: 300
+      runas: ubuntu
     - location: scripts/start_server
       timeout: 300
-      runas: root
+      runas: ubuntu
   ApplicationStop:
     - location: scripts/stop_server
       timeout: 300
-      runas: root
+      runas: ubuntu
