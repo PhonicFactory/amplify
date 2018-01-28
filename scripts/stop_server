@@ -1,2 +1,2 @@
 #!/bin/bash
-./node_modules/.bin/forever stopall
+/home/ubuntu/amplify/node_modules/.bin/forever stopall
