@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.bashrc
+source ~/.bash_profile
 nvm ls
 # nvm use 8.0
 cd /home/ubuntu/amplify && yarn
