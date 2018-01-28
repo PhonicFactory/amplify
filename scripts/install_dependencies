@@ -1,4 +1,5 @@
 #!/bin/bash
 source /home/ubuntu/.nvm/nvm.sh
+nvm ls
 # nvm use 8.0
 cd /home/ubuntu/amplify && yarn
