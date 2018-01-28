@@ -1,2 +1,3 @@
 #!/bin/bash
+source ~/.bashrc
 cd /home/ubuntu/amplify && ./node_modules/.bin/forever stopall
