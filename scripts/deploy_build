@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.bashrc
 cd /home/ubuntu/amplify
 cp ../amplify_config/.env .env
 yarn prod
