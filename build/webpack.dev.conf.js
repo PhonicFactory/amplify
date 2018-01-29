@@ -2,7 +2,9 @@ const path = require('path');
 const merge = require('webpack-merge');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const baseWebpackConfig = require('./webpack.base.conf')
-const assetRoot = path.resolve(__dirname, process.env.ASSET_ROOT);
+const env = process.env;
+const ASSET_ROOT = path.resolve(__dirname, env.ASSET_ROOT);
+const { PORT } = env;
 
 module.exports = merge(baseWebpackConfig, {
     plugins: [
@@ -13,9 +15,9 @@ module.exports = merge(baseWebpackConfig, {
         })
     ],
     devServer: {
-        contentBase: assetRoot,
+        contentBase: ASSET_ROOT,
         // compress: true,
-        port: process.env.PORT,
+        port: PORT,
         historyApiFallback: true
     }
 });

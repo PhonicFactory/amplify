@@ -3,7 +3,10 @@ const merge = require('webpack-merge');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.conf')
-const assetRoot = path.resolve(__dirname, process.env.ASSET_ROOT);
+const env = process.env;
+const ASSET_ROOT = path.resolve(__dirname, env.ASSET_ROOT);
+const { API_HOST } = env;
+
 
 module.exports = merge(baseWebpackConfig, {
     plugins: [
@@ -17,14 +20,14 @@ module.exports = merge(baseWebpackConfig, {
             // staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
             verbose: true,
             staticFileGlobs: [
-                `${assetRoot}/**.html`,
-                `${assetRoot}/manifest.json`,
-                `${assetRoot}/images/**.*`,
-                // `${assetRoot}/fonts/*/**.*`,
-                `${assetRoot}/js/**.js`,
-                // `${assetRoot}/css/**.css`
+                `${ASSET_ROOT}/**.html`,
+                `${ASSET_ROOT}/manifest.json`,
+                `${ASSET_ROOT}/images/**.*`,
+                // `${ASSET_ROOT}/fonts/*/**.*`,
+                `${ASSET_ROOT}/js/**.js`,
+                // `${ASSET_ROOT}/css/**.css`
             ],
-            stripPrefix: `${assetRoot}/`,
+            stripPrefix: `${ASSET_ROOT}/`,
             importScripts: ['/sw-import.js'],
             runtimeCaching: [
                 {
@@ -47,17 +50,26 @@ module.exports = merge(baseWebpackConfig, {
                         }
                     }
                 },
-                // TODO: CACHE API RESPONSES
-                // {
-                //     urlPattern: /http(s)?:\/\/o\.aolcdn\.com\/images\/dims/
-                //     handler: 'cacheFirst',
-                //     options: {
-                //         cache: {
-                //             name: 'et-api-cache',
-                //             maxEntries: 40
-                //         }
-                //     }
-                // },
+                {
+                    urlPattern: new RegExp(`${API_HOST}/calls/$`),
+                    handler: 'cacheFirst',
+                    options: {
+                        cache: {
+                            name: 'calls-cache',
+                            maxEntries: 40
+                        }
+                    }
+                },
+                {
+                    urlPattern: new RegExp(`${API_HOST}/calls/[a-z0-9-]+/$`),
+                    handler: 'cacheFirst',
+                    options: {
+                        cache: {
+                            name: 'call-cache',
+                            maxEntries: 40
+                        }
+                    }
+                }
             ]
         })
     ]

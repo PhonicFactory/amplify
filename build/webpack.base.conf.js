@@ -3,6 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const env = process.env;
+const { ASSET_ROOT, NODE_ENV } = env;
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
@@ -11,7 +13,7 @@ function resolve (dir) {
 module.exports = {
     entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, process.env.ASSET_ROOT),
+        path: path.resolve(__dirname, ASSET_ROOT),
         filename: 'js/bundle.js',
         publicPath: '/'
     },
@@ -40,7 +42,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: `"${process.env.NODE_ENV}"`
+                NODE_ENV: `"${NODE_ENV}"`
             }
         }),
         new Dotenv(),
