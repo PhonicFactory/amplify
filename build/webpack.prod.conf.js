@@ -52,7 +52,7 @@ module.exports = merge(baseWebpackConfig, {
                 },
                 {
                     urlPattern: new RegExp(`${API_HOST}/calls/$`),
-                    handler: 'cacheFirst',
+                    handler: 'networkFirst',
                     options: {
                         cache: {
                             name: 'calls-cache',
