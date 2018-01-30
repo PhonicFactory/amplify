@@ -34,9 +34,6 @@
                 user: {}
             };
         },
-        mounted() {
-            this.getUsers();
-        },
         computed: {
             ...mapGetters({
                 authenticated: 'authenticated',
@@ -59,7 +56,6 @@
         },
         methods: {
             ...mapActions([
-                'getUsers',
                 'deleteUser'
             ]),
             logoutClicked: logout,

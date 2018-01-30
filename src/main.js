@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
 import router from './routers/app';
@@ -56,18 +56,31 @@ new Vue({
     created() {
         // Register service worker
         swRegister();
+        // Fetch user data if authed
+        if (this.authenticated) {
+            this.getUsers();
+        }
     },
     computed: {
         ...mapGetters({
-            swRegistration: 'serviceWorkerRegistration'
+            swRegistration: 'serviceWorkerRegistration',
+            authenticated: 'authenticated',
+            currentUser: 'currentUser'
         })
     },
     watch: {
-        swRegistration() {
-            console.log('service worker registered');
-
-            // Ask for push notification permission
+        authenticated(bool) {
+            if (bool) {
+                this.getUsers();
+            }
+        },
+        currentUser() {
             subscribe();
         }
+    },
+    methods: {
+        ...mapActions([
+            'getUsers'
+        ])
     }
 }).$mount('#app');
