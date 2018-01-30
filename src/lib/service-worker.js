@@ -19,8 +19,9 @@ export function register() {
                         registration.update();
                     }
                 });
-                // Add registration to data store
+                // Add sw registration and push manager to data store
                 store.dispatch('setServiceWorkerRegistration', registration);
+                store.dispatch('setClientPushManager', registration.pushManager);
             });
     }
 }
