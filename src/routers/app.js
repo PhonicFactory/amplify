@@ -2,8 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { isAuthenticated } from '../lib/auth';
 import Home from '../pages/Home.vue';
-import Callback from '../pages/Callback.vue';
-import Register from '../pages/Register.vue';
 import Login from '../pages/Login.vue';
 
 Vue.use(VueRouter);
@@ -21,23 +19,18 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/callback',
-            name: 'auth-callback',
-            component: Callback
+            path: '/login',
+            name: 'login',
+            component: Login
         },
         {
-            path: '/register',
-            name: 'register',
-            component: Register,
+            path: '/calls/:callId',
+            name: 'home',
+            component: Home,
             meta: {
                 requiresAuth: true
             }
         },
-        {
-            path: '/login',
-            name: 'login',
-            component: Login
-        }
     ]
 });
 
