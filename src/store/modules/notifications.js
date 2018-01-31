@@ -22,6 +22,7 @@ const actions = {
         commit(types.RECEIVE_PUSH_MANAGER, pushManager);
     },
     setClientPushSubscription({ commit }, subscription) {
+        console.log('push subscription', JSON.stringify(subscription));
         commit(types.RECEIVE_CLIENT_PUSH_SUBSCRIPTION, subscription);
     },
     subscribeToServerPushNotifications( { commit, state, getters }) {
