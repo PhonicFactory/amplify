@@ -21,20 +21,20 @@
 </template>
 <script>
     export default {
-    methods: {
-        openDialog(ref) {
-        this.$refs[ref].open();
-        },
-        closeDialog(ref) {
-        this.$refs[ref].close();
-        },
-        onOpen() {
-        console.log('Opened');
-        },
-        onClose(type) {
-        console.log('Closed', type);
+        methods: {
+            openDialog(ref) {
+                this.$refs[ref].open();
+            },
+            closeDialog(ref) {
+                this.$refs[ref].close();
+            },
+            onOpen() {
+                console.log('Opened');
+            },
+            onClose(type) {
+                console.log('Closed', type);
+            }
         }
-    }
     };
 </script>
     
