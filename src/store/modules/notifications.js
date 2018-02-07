@@ -7,13 +7,14 @@ import api from '../../lib/api';
 const state = {
     pushManager: null,
     clientPushSubscription: null,
-    serverPushSubscription: null // TODO: Persist this value in local storage?
+    serverPushSubscriptionId: null // TODO: Persist this value in local storage?
 };
 
 // Getters
 const getters = {
     pushManager: state => state.pushManager,
-    clientPushSubscription: state => state.clientPushSubscription
+    clientPushSubscription: state => state.clientPushSubscription,
+    serverPushSubscriptionId: state => state.serverPushSubscriptionId
 };
 
 // Actions
@@ -36,10 +37,14 @@ const actions = {
                 endpoint: endpoint,
                 auth: keys.auth
             })
-            .then(subscription => commit(types.RECEIVE_SERVER_PUSH_SUBSCRIPTION, subscription))
+            .then(subscription => commit(types.RECEIVE_SERVER_PUSH_SUBSCRIPTION, subscription.id))
             .catch((e) => {
                 console.log('server push subscription failed', e);
             });
+    },
+    unsubscribeToServerPushNotifications({ commit }) {
+        // TODO: actually unsubscribe from server notifications
+        commit(types.RECEIVE_SERVER_PUSH_SUBSCRIPTION, null)
     }
 };
 
@@ -51,8 +56,8 @@ const mutations = {
     [types.RECEIVE_CLIENT_PUSH_SUBSCRIPTION](state, subscription) {
         state.clientPushSubscription = subscription;
     },
-    [types.RECEIVE_SERVER_PUSH_SUBSCRIPTION](state, subscription) {
-        state.serverPushSubscription = subscription;
+    [types.RECEIVE_SERVER_PUSH_SUBSCRIPTION](state, id) {
+        state.serverPushSubscriptionId = id;
     }
 };
 
