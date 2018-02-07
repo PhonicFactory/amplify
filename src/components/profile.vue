@@ -84,9 +84,6 @@
                 this.loading = false;
             }
         },
-        // created() {
-        //     this.notificationsEnabled = this.hasSubscription;
-        // },
         methods: {
             ...mapActions([
                 'deleteUser'
@@ -96,10 +93,6 @@
                 if (window.confirm('Are you sure you want to delete your account?')) {
                     this.deleteUser(this.user.id);
                 }
-            },
-            toggleNotifications() {
-
-                console.log(this.hasPushSubscription);
             }
         }
     };
