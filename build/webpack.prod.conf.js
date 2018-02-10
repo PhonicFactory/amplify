@@ -51,6 +51,26 @@ module.exports = merge(baseWebpackConfig, {
                     }
                 },
                 {
+                    urlPattern: new RegExp(`${API_HOST}/conversations/$`),
+                    handler: 'networkFirst',
+                    options: {
+                        cache: {
+                            name: 'conversations-cache',
+                            maxEntries: 40
+                        }
+                    }
+                },
+                {
+                    urlPattern: new RegExp(`${API_HOST}/conversations/[a-z0-9-]+/$`),
+                    handler: 'networkFirst',
+                    options: {
+                        cache: {
+                            name: 'conversation-cache',
+                            maxEntries: 40
+                        }
+                    }
+                },
+                {
                     urlPattern: new RegExp(`${API_HOST}/calls/$`),
                     handler: 'networkFirst',
                     options: {
