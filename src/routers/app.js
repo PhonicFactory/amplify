@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 import { isAuthenticated } from '../lib/auth';
 import Home from '../pages/Home.vue';
 import Login from '../pages/Login.vue';
+import Profile from '../pages/Profile.vue';
+import Conversations from '../pages/Conversations.vue';
+import Conversation from '../pages/Conversation.vue';
 
 Vue.use(VueRouter);
 
@@ -24,13 +27,30 @@ const router = new VueRouter({
             component: Login
         },
         {
-            path: '/calls/:callId',
-            name: 'home',
-            component: Home,
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
             meta: {
                 requiresAuth: true
             }
         },
+        {
+            path: '/conversations',
+            name: 'conversations',
+            component: Conversations,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/conversation/:id',
+            name: 'conversation',
+            components: { default: Conversation },
+            meta: {
+                requiresAuth: true
+            },
+            props: { default: true }
+        }
     ]
 });
 

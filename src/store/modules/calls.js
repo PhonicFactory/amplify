@@ -23,9 +23,9 @@ const getters = {
 
 // Actions
 const actions = {
-    getAllCalls({ commit }) {
+    getAllCalls({ commit }, conversation_id) {
         commit(types.REQUEST_CALLS);
-        api.get('calls')
+        api.get('calls', { filter: `conversation:${conversation_id}` })
             .then((calls) => {
                 commit(types.RECEIVE_CALLS, calls);
             })
@@ -33,6 +33,9 @@ const actions = {
                 console.log(e);
                 commit(types.RECEIVE_CALLS_FAILURE);
             });
+    },
+    clearAllCalls({ commit }) {
+        commit(types.CLEAR_CALLS);
     },
     getCallAudio({ commit }, call) {
         commit(types.REQUEST_CALL_AUDIO, call);
@@ -65,6 +68,9 @@ const mutations = {
     [types.RECEIVE_CALLS](state, calls) {
         state.items = calls.items;
         state.status = 1;
+    },
+    [types.CLEAR_CALLS](state) {
+        state.items = [];
     },
     [types.RECEIVE_CALLS_FAILURE](state) {
         state.status = 2;
