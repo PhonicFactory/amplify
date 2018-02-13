@@ -2,6 +2,7 @@ import axios from 'axios';
 import router from '../routers/api';
 import store from '../store';
 import { getAccessToken } from './auth';
+import { objectToQueryString } from './helpers';
 
 class Api {
 
@@ -39,7 +40,7 @@ class Api {
      */
     get(name, params = {}, query = {}, config = {}) {
         try {
-            return this.http.get(`${router.match({ name, params, query }).fullPath}/`, config);
+            return this.http.get(`${router.match({ name, params, query }).path}/${objectToQueryString(query)}`, config);
         } catch (e) {
             return Promise.reject('Route Not Found');
         }
