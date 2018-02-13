@@ -25,7 +25,7 @@ const getters = {
 const actions = {
     getAllCalls({ commit }, conversation_id) {
         commit(types.REQUEST_CALLS);
-        api.get('calls', { filter: `conversation:${conversation_id}` })
+        api.get('calls', {}, { filter: `conversation:${conversation_id}` })
             .then((calls) => {
                 commit(types.RECEIVE_CALLS, calls);
             })

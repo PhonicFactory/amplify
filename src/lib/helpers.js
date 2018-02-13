@@ -1,3 +1,5 @@
+import { RECEIVE_CLIENT_PUSH_SUBSCRIPTION } from "../store/mutation-types";
+
 /**
  * Convert base64 string to Uint8Array
  * @param  {string} base64String
@@ -15,4 +17,15 @@ export function urlBase64ToUint8Array(base64String) {
         outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
+}
+
+/**
+ * Convert plain object to querystring
+ */
+export function objectToQueryString(query) {
+    const keys = Object.keys(query);
+    if (!keys.length) {
+        return '';
+    }
+    return keys.reduce((accum, key, index) => accum + key + '=' + encodeURIComponent(query[key]) + (index < keys.length - 1 ? '&' : ''), '?');
 }
