@@ -43,6 +43,9 @@
                 phone_number: null
             };
         },
+        created() {
+            this.checkForRedirect();
+        },
         computed: {
             ...mapGetters({
                 phoneNumber: 'authPhoneNumber',
@@ -50,11 +53,9 @@
             })
         },
         watch: {
-            authenticated(bool) {
+            authenticated() {
                 console.log('Authentication Successful');
-                if (bool) {
-                    this.$router.push({ name: 'home' });
-                }
+                this.checkForRedirect();
             }
         },
         methods: {
@@ -68,6 +69,11 @@
             },
             validateClicked() {
                 validateCode(this.code);
+            },
+            checkForRedirect() {
+                if (this.authenticated) {
+                    this.$router.replace({ name: 'home' });
+                }
             }
         }
     };

@@ -7,6 +7,8 @@ export default new VueRouter({
     routes: [
         { path: `${HOST}/calls/`, name: 'calls' },
         { path: `${HOST}/calls/:id`, name: 'call' },
+        { path: `${HOST}/conversations/`, name: 'conversations' },
+        { path: `${HOST}/conversations/:id`, name: 'conversation' },
         { path: `${HOST}/users/`, name: 'users' },
         { path: `${HOST}/users/:id`, name: 'user' },
         { path: `${HOST}/subscriptions/`, name: 'push-subscriptions' }

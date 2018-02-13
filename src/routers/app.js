@@ -2,9 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { isAuthenticated } from '../lib/auth';
 import Home from '../pages/Home.vue';
-import Callback from '../pages/Callback.vue';
-import Register from '../pages/Register.vue';
 import Login from '../pages/Login.vue';
+import Profile from '../pages/Profile.vue';
+import Conversations from '../pages/Conversations.vue';
+import Conversation from '../pages/Conversation.vue';
 
 Vue.use(VueRouter);
 
@@ -21,22 +22,34 @@ const router = new VueRouter({
             }
         },
         {
-            path: '/callback',
-            name: 'auth-callback',
-            component: Callback
+            path: '/login',
+            name: 'login',
+            component: Login
         },
         {
-            path: '/register',
-            name: 'register',
-            component: Register,
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
             meta: {
                 requiresAuth: true
             }
         },
         {
-            path: '/login',
-            name: 'login',
-            component: Login
+            path: '/conversations',
+            name: 'conversations',
+            component: Conversations,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/conversation/:id',
+            name: 'conversation',
+            components: { default: Conversation },
+            meta: {
+                requiresAuth: true
+            },
+            props: { default: true }
         }
     ]
 });

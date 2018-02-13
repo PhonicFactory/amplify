@@ -1,18 +1,24 @@
 <template>
-    <md-layout :md-column="true">
-        <md-toolbar class="md-large md-accent">
-            <md-avatar class="md-large">
-                <img src="https://placeimg.com/64/64/people/1" alt="People">
-            </md-avatar>
+    <md-layout md-column>
+        <md-toolbar class="md-dense">
+            <md-button class="md-icon-button" @click="$router.push({ name: 'conversations' })">
+                <md-icon>arrow_back</md-icon>
+            </md-button>
             <h2 class="md-title" style="flex: 1">Profile / Settings</h2>
+            <md-button class="md-icon-button">
+                <md-icon>mode_edit</md-icon>
+            </md-button>
         </md-toolbar>
         <md-layout md-tag="form">
             <md-list>
-                <md-list-item v-for="value, field in user" :key="field">
+                <md-list-item>
                     <md-input-container>
-                        <label>{{ field }}</label>
-                        <md-input v-model="user[field]"></md-input>
+                        <label>Phone #</label>
+                        <md-input disabled v-model="user.phone_number"></md-input>
                     </md-input-container>
+                </md-list-item>
+                <md-list-item>
+                    <md-switch class="md-primary" :disabled="loading" v-model="hasPushSubscription">Allow notifications</md-switch>
                 </md-list-item>
                 <md-list-item>
                     <md-button md-flex @click="logoutClicked">Log Out</md-button>
@@ -27,19 +33,37 @@
 <script>
     import { mapGetters, mapActions } from 'vuex';
     import { logout } from '../lib/auth';
+    import { subscribe, unsubscribe } from '../lib/push-notifications';
 
     export default {
         data() {
             return {
-                user: {}
+                user: {},
+                notificationsEnabled: false,
+                loading: false
             };
         },
         computed: {
             ...mapGetters({
                 authenticated: 'authenticated',
                 currentUser: 'currentUser',
-                deleteUserStatus: 'deleteUserStatus'
-            })
+                deleteUserStatus: 'deleteUserStatus',
+                pushSubscription: 'clientPushSubscription',
+                serverPushSubscriptionId: 'serverPushSubscriptionId'
+            }),
+            hasPushSubscription: {
+                get() {
+                    return !!this.pushSubscription;
+                },
+                set(value) {
+                    this.loading = true;
+                    if (value) {
+                        subscribe();
+                        return;
+                    }
+                    unsubscribe();
+                }
+            }
         },
         watch: {
             currentUser(user) {
@@ -52,6 +76,9 @@
                         break;
                     default:
                 }
+            },
+            serverPushSubscriptionId() {
+                this.loading = false;
             }
         },
         methods: {
