@@ -27,7 +27,12 @@ self.addEventListener('push', function(event) {
  */
 self.addEventListener('notificationclick', function(event) {
     var appUrl = location.protocol + '//' + location.host;
+    var data = event.notification.data;
+    var navigationUrl = '/';
     event.notification.close();
+    if (data.conversation_id && data.call_id) {
+        navigationUrl += 'conversation/' + data.conversation_id + '/call/' + data.call_id;
+    }
     // This looks to see if the current is already open and
     // focuses if it is
     event.waitUntil(clients.matchAll({
@@ -36,11 +41,14 @@ self.addEventListener('notificationclick', function(event) {
         for (var i = 0; i < clientList.length; i++) {
             var client = clientList[i];
             if ((new RegExp(appUrl)).test(client.url) && 'focus' in client) {
-                return client.focus();
+                return client.navigate(navigationUrl)
+                    .then(function(c){
+                        return c.focus();
+                    });
             }
         }
         if (clients.openWindow) {
-            return clients.openWindow('/');
+            return clients.openWindow(navigationUrl);
         }
     }));
 });
