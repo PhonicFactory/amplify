@@ -53,7 +53,7 @@
             ]),
             convoSelected(conversation) {
                 this.setActiveConversation(conversation);
-                this.$router.push({ name: 'conversation', params: { id: conversation.id } })
+                this.$router.push({ name: 'conversation', params: { convoId: conversation.id } })
             }
         }
     };

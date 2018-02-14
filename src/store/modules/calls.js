@@ -43,9 +43,9 @@ const actions = {
                 headers: { 'Accept': 'audio/wav' },
                 responseType: 'blob',
             })
-            .then((call) => {
+            .then((callAudio) => {
                 var reader = new FileReader();
-                reader.readAsDataURL(call);
+                reader.readAsDataURL(callAudio);
                 reader.onloadend = () => {
                     commit(types.RECEIVE_CALL_AUDIO, reader.result);
                 }

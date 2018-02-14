@@ -18,14 +18,3 @@ export function urlBase64ToUint8Array(base64String) {
     }
     return outputArray;
 }
-
-/**
- * Convert plain object to querystring
- */
-export function objectToQueryString(query) {
-    const keys = Object.keys(query);
-    if (!keys.length) {
-        return '';
-    }
-    return keys.reduce((accum, key, index) => accum + key + '=' + encodeURIComponent(query[key]) + (index < keys.length - 1 ? '&' : ''), '?');
-}

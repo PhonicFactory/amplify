@@ -13,7 +13,7 @@
                     <div class="md-list-text-container">
                         <span>{{ call.created_at }}</span>
                     </div>
-                    <md-button class="md-icon-button md-list-action" @click="openCall(call)">
+                    <md-button class="md-icon-button md-list-action" @click="$router.push({ name: 'call', params: { convoId, callId: call.id } })">
                         <md-icon class="md-primary">hearing</md-icon>
                     </md-button>
                     <md-divider class="md-inset"></md-divider>
@@ -32,7 +32,7 @@
                 <active-call />
             </md-dialog-content>
             <md-dialog-actions>
-                <md-button class="md-primary" @click="$refs.activeCallDialog.close()">Close</md-button>
+                <md-button class="md-primary" @click="closeCall()">Close</md-button>
             </md-dialog-actions>
         </md-dialog>
     </md-layout>
@@ -41,15 +41,20 @@
     import { mapGetters, mapActions } from 'vuex';
 
     export default {
-        props: ['id'],
+        props: ['convoId', 'callId'],
         created() {
             this.clearAllCalls();
             if (!this.conversation) {
-                this.fetchActiveConversation(this.id);
+                this.fetchActiveConversation(this.convoId);
             }
         },
         mounted() {
-            this.getAllCalls(this.id);
+            this.getAllCalls(this.convoId);
+            if (this.callId) {
+                this.$nextTick(()=> {
+                    this.openCall({ id: this.callId });
+                });
+            }
         },
         computed: {
             ...mapGetters({
@@ -57,6 +62,15 @@
                 status: 'allCallsStatus',
                 conversation: 'activeConversation'
             })
+        },
+        watch: {
+            '$route.params.callId'(id) {
+                if (!id) {
+                    this.$refs.activeCallDialog.close();
+                    return;
+                }
+                this.openCall({ id })
+            }
         },
         methods: {
             ...mapActions([
@@ -68,6 +82,9 @@
             openCall(call) {
                 this.$refs.activeCallDialog.open();
                 this.getCallAudio(call);
+            },
+            closeCall() {
+                this.$router.push({ name: 'conversation', params: { convoId: this.convoId } });
             }
         }
     };
