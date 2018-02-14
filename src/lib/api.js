@@ -40,7 +40,9 @@ class Api {
      */
     get(name, params = {}, query = {}, config = {}) {
         try {
-            return this.http.get(`${router.match({ name, params, query }).path}/${objectToQueryString(query)}`, config);
+            const route = router.match({ name, params, query });
+            const queryString = Object.keys(query).length ? `?${route.fullPath.split('?')[1]}` : '';
+            return this.http.get(`${route.path}/${queryString}`, config);
         } catch (e) {
             return Promise.reject('Route Not Found');
         }
