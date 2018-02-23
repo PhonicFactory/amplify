@@ -14,6 +14,7 @@ module.exports = merge(baseWebpackConfig, {
             importScripts: ['/sw-import.js']
         })
     ],
+    devtool: 'source-map',
     devServer: {
         contentBase: ASSET_ROOT,
         // compress: true,

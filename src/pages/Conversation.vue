@@ -35,6 +35,7 @@
                 <md-button class="md-primary" @click="closeCall()">Close</md-button>
             </md-dialog-actions>
         </md-dialog>
+        <new-voice-recording />
     </md-layout>
 </template>
 <script>
