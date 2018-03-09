@@ -2,12 +2,14 @@
 import * as types from '../mutation-types';
 import statuses from '../status-types';
 import api from '../../lib/api';
+import { blobToBase64 } from '../../lib/helpers';
 
 // Initial State
 const state = {
     status: null,
     activeCall: null,
     items: [],
+    postMessageStatus: null
     // limit: 0,
     // page: 0,
     // pages: 0,
@@ -18,7 +20,8 @@ const state = {
 const getters = {
     activeCall: state => state.activeCall,
     allCalls: state => state.items,
-    allCallsStatus: state => statuses[state.status]
+    allCallsStatus: state => statuses[state.status],
+    postMessageStatus: state => statuses[state.postMessageStatus]
 };
 
 // Actions
@@ -40,19 +43,36 @@ const actions = {
     getCallAudio({ commit }, call) {
         commit(types.REQUEST_CALL_AUDIO, call);
         api.get('call', { id: call.id }, {}, {
-                headers: { 'Accept': 'audio/wav' },
+                headers: { 'Accept': 'audio/webm' },
                 responseType: 'blob',
             })
             .then((callAudio) => {
-                var reader = new FileReader();
-                reader.readAsDataURL(callAudio);
-                reader.onloadend = () => {
-                    commit(types.RECEIVE_CALL_AUDIO, reader.result);
-                }
+                blobToBase64(callAudio)
+                    .then((result) => {
+                        commit(types.RECEIVE_CALL_AUDIO, result);
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                        // commit(types.RECEIVE_CALL_AUDIO_FAILURE);
+                    });
             })
             .catch((e) => {
                 console.log(e);
                 // commit(types.RECEIVE_CALL_AUDIO_FAILURE);
+            });
+    },
+    startNewCallAudio({ commit }) {
+        commit(types.START_NEW_CALL_AUDIO);
+    },
+    postCallAudio({ commit }, payload) {
+        commit(types.REQUEST_POST_MESSAGE);
+        api.post('calls', {}, payload)
+            .then((response) => {
+                commit(types.RECEIVE_POST_MESSAGE);
+            })
+            .catch((e) => {
+                console.log(e);
+                commit(types.RECEIVE_POST_MESSAGE_FAILURE);
             });
     },
     clearActiveCall({ commit }) {
@@ -83,6 +103,18 @@ const mutations = {
     },
     [types.CLEAR_ACTIVE_CALL](state) {
         state.activeCall = null;
+    },
+    [types.REQUEST_POST_MESSAGE](state) {
+        state.postMessageStatus = 0;
+    },
+    [types.RECEIVE_POST_MESSAGE](state) {
+        state.postMessageStatus = 1;
+    },
+    [types.RECEIVE_POST_MESSAGE_FAILURE](state) {
+        state.postMessageStatus = 2;
+    },
+    [types.START_NEW_CALL_AUDIO](state) {
+        state.postMessageStatus = null;
     }
 };
 
