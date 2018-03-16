@@ -34,7 +34,7 @@
                 </md-dialog-actions>
             </template>
         </md-dialog>
-        <md-button class="md-fab md-fab-bottom-right" id="fab" @click="startNewCallAudio();$refs.dialog.open()">
+        <md-button class="md-fab md-fab-bottom-right" :disabled="disabled" @click="startNewCallAudio();$refs.dialog.open()">
             <md-icon>record_voice_over</md-icon>
         </md-button>
     </div>
@@ -45,6 +45,12 @@
     import { blobToBase64 } from '../lib/helpers';
 
     export default {
+        props: {
+            disabled: {
+                required: false,
+                default: false
+            }
+        },
         data() {
             return {
                 loading: false,

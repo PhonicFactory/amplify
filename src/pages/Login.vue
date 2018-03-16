@@ -1,13 +1,18 @@
+<style>
+    .login-container .md-count {
+        display: none;
+    }
+</style>
 <template>
-    <md-layout>
+    <md-layout class="login-container">
         <md-layout md-column md-align="center" md-vertical-align="center">
             <md-card>
                 <md-card-header>
                     <md-card-header-text>
                         <div class="md-title">
-                            Login
+                            Enter
                         </div>
-                        <div class="md-subhead">for access</div>
+                        <div class="md-subhead">your phone number</div>
                     </md-card-header-text>
                     <md-card-media>
                         <img src="/images/launcher-icon-4x.png" alt="ET">
@@ -22,7 +27,9 @@
                         </template>
                         <template v-else>
                             <label>Enter Phone</label>
+                            <md-icon>phone</md-icon>
                             <md-input ref="phoneNumberInput" v-model="phone_number" pattern="^\+\d{11}$" placeholder="+19998675309" required></md-input>
+                            <!-- <md-input ref="phoneNumberInput" v-model="phone_number" pattern="^\d{11}$" maxlength="10" placeholder="8888675309" required ></md-input> -->
                             <md-button @click="loginClicked">Log In</md-button>
                         </template>
                     </md-input-container>
@@ -40,7 +47,7 @@
             return {
                 invalid: false,
                 code: null,
-                phone_number: null
+                phone_number: ''
             };
         },
         created() {

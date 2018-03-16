@@ -8,16 +8,7 @@
         </md-toolbar>
         <md-layout md-column>
             <md-list v-if="status === 'success'">
-                <md-list-item v-for="call in calls" :key="call.id">
-                    <md-icon class="md-primary">call</md-icon>
-                    <div class="md-list-text-container">
-                        <span>{{ call.created_at }}</span>
-                    </div>
-                    <md-button class="md-icon-button md-list-action" @click="$router.push({ name: 'call', params: { convoId, callId: call.id } })">
-                        <md-icon class="md-primary">hearing</md-icon>
-                    </md-button>
-                    <md-divider class="md-inset"></md-divider>
-                </md-list-item>
+                <message-item v-for="call in calls" :key="call.id" :message="call" :convoId="convoId" />
                 <md-list-item v-if="!calls.length">
                     No Calls
                 </md-list-item>

@@ -6,6 +6,7 @@ import Login from '../pages/Login.vue';
 import Profile from '../pages/Profile.vue';
 import Conversations from '../pages/Conversations.vue';
 import Conversation from '../pages/Conversation.vue';
+import Tutorial from '../pages/Tutorial.vue';
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,14 @@ const router = new VueRouter({
             path: '/login',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/tutorial',
+            name: 'tutorial',
+            component: Tutorial,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/profile',

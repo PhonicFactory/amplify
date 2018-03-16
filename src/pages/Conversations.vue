@@ -11,17 +11,7 @@
         </md-toolbar>
         <md-layout>
             <md-list v-if="status === 'success'">
-                <md-list-item v-for="convo in convos" :key="convo.id" @click="convoSelected(convo)">
-                    <md-icon class="md-primary">face</md-icon>
-                    <div class="md-list-text-container">
-                        <span>{{ convo.conversation_phone_number }}</span>
-                        <span>at {{ convo.created_at }}</span>
-                    </div>
-                    <md-button class="md-icon-button md-list-action">
-                        <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                    </md-button>
-                    <md-divider class="md-inset"></md-divider>
-                </md-list-item>
+                <conversation-item v-for="convo in convos" :key="convo.id" :conversation="convo" @selected="convoSelected(convo)" />
                 <md-list-item v-if="!convos.length">
                     No Conversations
                 </md-list-item>
