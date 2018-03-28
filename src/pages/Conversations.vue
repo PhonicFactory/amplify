@@ -14,7 +14,7 @@
                 <md-list-item v-for="convo in convos" :key="convo.id" @click="convoSelected(convo)">
                     <md-icon class="md-primary">face</md-icon>
                     <div class="md-list-text-container">
-                        <span>{{ convo.conversation_phone_number }}</span>
+                        <span>{{ convo.from_phone_number }}</span>
                         <span>at {{ convo.created_at }}</span>
                     </div>
                     <md-button class="md-icon-button md-list-action">
