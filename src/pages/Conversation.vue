@@ -4,7 +4,7 @@
             <md-button class="md-icon-button" @click="$router.push({ name: 'conversations' })">
                 <md-icon>arrow_back</md-icon>
             </md-button>
-            <h2 class="md-title" style="flex: 1">{{ conversation && conversation.conversation_phone_number }}</h2>
+            <h2 class="md-title" style="flex: 1">{{ conversation && conversation.from_phone_number }}</h2>
         </md-toolbar>
         <md-layout md-column>
             <md-list v-if="status === 'success'">

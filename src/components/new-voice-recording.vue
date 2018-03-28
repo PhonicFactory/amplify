@@ -85,21 +85,18 @@
             },
             sendRecording() {
                 const b64_audio = this.base64Audio;
-                const {
-                    user_id: to_user_id,
-                    conversation_phone_number: to_phone_number
-                } = this.conversation;
-                const {
-                    id: from_user_id,
-                    phone_number: from_phone_number
-                } = this.currentUser;
-                this.postCallAudio({
-                    to_user_id,
-                    to_phone_number,
-                    from_user_id,
-                    from_phone_number,
-                    b64_audio
-                });
+                const { id: current_user_id } = this.currentUser;
+                let payload = Object.assign({}, this.conversation);
+                // reverse shit
+                if (current_user_id === payload.to_user_id) {
+                    payload = Object.assign(payload, {
+                        to_user_id: payload.from_user_id,
+                        to_phone_number: payload.from_phone_number,
+                        from_user_id: payload.to_user_id,
+                        from_phone_number: payload.to_phone_number
+                    });
+                }
+                this.postCallAudio(Object.assign({}, payload, { b64_audio }));
             },
             captureRecording() {
                 console.log('capture recording');
