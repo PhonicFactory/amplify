@@ -20,12 +20,19 @@ export function urlBase64ToUint8Array(base64String) {
 }
 
 /**
- * Convert plain object to querystring
+ * Convert blob to base64 string
+ * @param {Blob} blob
  */
-export function objectToQueryString(query) {
-    const keys = Object.keys(query);
-    if (!keys.length) {
-        return '';
-    }
-    return keys.reduce((accum, key, index) => accum + key + '=' + encodeURIComponent(query[key]) + (index < keys.length - 1 ? '&' : ''), '?');
+export function blobToBase64(blob) {
+    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        try {
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+                resolve(reader.result);
+            }
+        } catch(e) {
+            reject('Error converting audio', e);
+        }
+    });
 }
