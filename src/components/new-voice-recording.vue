@@ -83,6 +83,7 @@
                 this.$refs.dialog.close();
                 this.base64Audio = '';
             },
+
             sendRecording() {
                 const b64_audio = this.base64Audio;
                 const { id: current_user_id } = this.currentUser;
