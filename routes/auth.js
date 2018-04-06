@@ -62,8 +62,13 @@ router.post('/validate', (req, res) => {
         res.send(response.data);
     })
     .catch((error) => {
+        const { status } = error.response;
         console.log('error', error);
-        res.send(error);
+        res.status(status).send({
+            error: {
+                status
+            }
+        });
     });
 });
 
