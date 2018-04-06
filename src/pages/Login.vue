@@ -75,92 +75,14 @@
                 </md-board>
                 <md-board class="flex-columns">
                     <md-input-container :class="{ 'md-input-invalid': codeInvalid }" style="margin-bottom: 0;">
-                        <md-input v-model="code" placeholder="0000" maxlength="6" required></md-input>
+                        <md-input v-model="code" placeholder="000000" maxlength="6" required></md-input>
                     </md-input-container>
-
-
                     <h5 class="mt-md text-center">{{`Enter the 6-digit code sent to +1${phone_number}`}}</h5>
                     <md-button class="mt-md md-raised md-primary" :disabled="loading" @click="validateClicked">Validate</md-button>
                     <md-button :disabled="loading" @click="$refs.boards.movePrevBoard()">Re-send Code</md-button>
-
-
-
                 </md-board>
             </md-boards>
         </md-layout>
-
-        <!-- <md-layout md-column class="pl-md pr-md"> -->
-
-
-
-
-
-            <!--
-            <md-layout class="input-tel mt-md" :class="{ 'input-invalid': invalid }">
-                <div class="input-tel-select pl-sm pr-sm">
-                    <md-icon md-src="/images/flag-us.png" />
-                </div>
-                <div class="input-tel-prefix pl-sm pr-sm">+1</div>
-                <div class="input-tel-input">
-                    <md-input-container :class="{ 'md-input-invalid': invalid }">
-                        <md-input md-clearable ref="phoneNumberInput" class="mt-sm" v-model="phone_number" maxlength="10" pattern="^\+\d{11}$" placeholder="8888675309" required></md-input>
-                    </md-input-container>
-                </div>
-            </md-layout>
-            <h5 class="mt-md text-center">We'll send a text to verify your phone</h5>
-            <md-button class="mt-md md-raised md-primary" @click="nextClicked">Next</md-button>
-            -->
-
-
-
-
-
-            <!-- </md-layout> -->
-            <!-- <md-layout>
-                foo
-            </md-layout> -->
-            <!--
-            <md-input-container :class="{ 'md-input-invalid': invalid }">
-                <template v-if="phoneNumber">
-                    <label>Enter Code</label>
-                    <md-input v-model="code"></md-input>
-                    <md-button @click="validateClicked">Validate</md-button>
-                </template>
-                <template v-else>
-
-                </template>
-            </md-input-container>
-            -->
-        <!-- </md-layout> -->
-        <!-- <md-layout md-column md-align="center" md-vertical-align="center">
-            <md-card>
-                <md-card-header>
-                    <md-card-header-text>
-                        <div class="md-title">
-                            Login
-                        </div>
-                        <div class="md-subhead">for access</div>
-                    </md-card-header-text>
-                    <md-card-media>
-                        <img src="/images/launcher-icon-4x.png" alt="ET">
-                    </md-card-media>
-                </md-card-header>
-                <md-card-actions>
-                    <md-input-container :class="{ 'md-input-invalid': invalid }">
-                        <template v-if="phoneNumber">
-                            <label>Enter Code</label>
-                            <md-input v-model="code"></md-input>
-                            <md-button @click="validateClicked">Validate</md-button>
-                        </template>
-                        <template v-else>
-                            <label>Enter Phone</label>
-                            <md-input ref="phoneNumberInput" v-model="phone_number" pattern="^\+\d{11}$" placeholder="+19998675309" required></md-input>
-                            <md-button @click="loginClicked">Log In</md-button>
-                        </template>
-                    </md-input-container>
-                </md-card-actions>
-            </md-card>
-        </md-layout> -->
     </md-layout>
 </template>
 <script>
