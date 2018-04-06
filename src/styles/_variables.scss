@@ -1,0 +1,29 @@
+/* Set up gutter sizes to match Vue Material */
+$gutter-sm: 8px;
+$gutter-md: 16px;
+$gutter-lg: 24px;
+$gutter-hg: 40px;
+$gutters: (
+    sm: $gutter-sm,
+    md: $gutter-md,
+    lg: $gutter-lg,
+    hg: $gutter-hg
+);
+
+/* Font Sizes */
+$font-size-small: 14px;
+$font-size-base: 16px;
+$font-size-medium: 16px;
+$font-size-large: 18px;
+$font-size-larger: 24px;
+
+$font-sizes: (
+    small: $font-size-small,
+    base: $font-size-base,
+    medium: $font-size-medium,
+    large: $font-size-large,
+    larger: $font-size-larger
+);
+
+/* Colors */
+$red: #f44336;

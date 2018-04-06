@@ -5,7 +5,7 @@
     export default {
         created() {
             // Simply redirect to conversations for now
-            this.$router.push({ name: 'conversations' });
+            this.$router.replace({ name: 'conversations' });
         }
     };
 </script>

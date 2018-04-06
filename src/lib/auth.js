@@ -24,7 +24,7 @@ function isValid() {
 export function login(phone_number) {
     console.log('Logging in');
     // Send CODE
-    axios
+    return axios
         .post(router.match({ name: 'start' }).path, { phone_number })
         .then(({ data }) => {
             console.log(data);
@@ -35,7 +35,7 @@ export function login(phone_number) {
 export function validateCode(code) {
     // Validate Code
     console.log('Validating code');
-    axios
+    return axios
         .post(router.match({ name: 'validate' }).path, {
             password: code,
             username: store.getters.authPhoneNumber

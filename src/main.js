@@ -2,6 +2,7 @@ import Vue from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.css';
+import './styles/main.scss';
 import router from './routers/app';
 import store from './store';
 import { register as swRegister } from './lib/service-worker';
