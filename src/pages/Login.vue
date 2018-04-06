@@ -1,5 +1,11 @@
 <template>
-    <md-layout>
+    <md-layout md-column>
+        <md-toolbar class="md-dense">
+            <md-button class="md-icon-button">
+                <md-icon md-src="/images/launcher-icon.png" />
+            </md-button>
+            <h2 class="md-title" style="flex: 1">Amplify</h2>
+        </md-toolbar>
         <md-layout md-column md-align="center" md-vertical-align="center">
             <md-card>
                 <md-card-header>
