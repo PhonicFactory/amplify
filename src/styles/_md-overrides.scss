@@ -8,3 +8,14 @@
     bottom: -22px;
     font-size: 12px;
 }
+
+.md-boards-simple {
+
+    .md-boards-navigation {
+        display: none;
+    }
+
+    .md-count {
+        display: none;
+    }
+}

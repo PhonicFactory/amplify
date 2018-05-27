@@ -30,6 +30,7 @@
                 <md-spinner md-indeterminate />
             </md-layout>
             <h2 v-if="status === 'reject'">Error Retrieving Conversations</h2>
+            <new-conversation/>
         </md-layout>
     </md-layout>
 </template>

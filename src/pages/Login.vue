@@ -3,17 +3,6 @@
 
     $input-height: 48px;
 
-    .auth-page {
-
-        .md-boards-navigation {
-            display: none;
-        }
-
-        .md-count {
-            display: none;
-        }
-    }
-
     .input-tel {
         border-radius: $gutter-sm;
         border: solid 1px #ccc;
@@ -57,7 +46,7 @@
             <h2 class="md-title">Amplify</h2>
         </md-toolbar>
         <md-layout>
-            <md-boards ref="boards">
+            <md-boards class="md-boards-simple" ref="boards">
                 <md-board class="flex-columns">
                     <md-layout class="input-tel" :class="{ 'input-invalid': phoneInvalid }">
                         <div class="input-tel-select pl-sm pr-sm">

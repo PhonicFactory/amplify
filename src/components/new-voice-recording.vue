@@ -20,7 +20,7 @@
             </template>
             <template v-else>
                 <md-dialog-title>Record new message</md-dialog-title>
-                <md-dialog-content style="text-align:center;">
+                <md-dialog-content>
                     <audio style="height:48px;" ref="audioInput" controls></audio>
                     <!-- <input type="file" accept="audio/*" capture> -->
                     <md-button class="md-fab" :class="{ 'md-warn': isRecording, 'md-primary': !isRecording }" @click="isRecording=!isRecording">
