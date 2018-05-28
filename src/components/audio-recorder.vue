@@ -9,6 +9,7 @@
 </style>
 <template>
     <md-layout class="audio-recorder" md-column md-align="center">
+        <audio-wave-form :blob="blob"/>
         <audio class='player' ref="player" controls></audio>
         <!-- <input type="file" accept="audio/*" capture> -->
         <md-button
@@ -30,7 +31,8 @@
             return {
                 isRecording: false,
                 mediaRecording: null,
-                base64Audio: ''
+                base64Audio: '',
+                blob: null
             };
         },
         beforeDestroy() {
@@ -58,6 +60,7 @@
                 this.mediaRecording.complete.then(
                     audioData => {
                         console.log('complete', audioData);
+                        this.blob = audioData;
                         this.$refs.player.src = window.URL.createObjectURL(audioData);
                         blobToBase64(audioData)
                             .then((result) => {
