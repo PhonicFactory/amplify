@@ -9,7 +9,7 @@
 </style>
 <template>
     <md-layout class="audio-recorder" md-column md-align="center">
-        <audio-wave-form :blob="blob"/>
+        <audio-wave :blob="blob"/>
         <audio class='player' ref="player" controls></audio>
         <!-- <input type="file" accept="audio/*" capture> -->
         <md-button
@@ -32,7 +32,7 @@
                 isRecording: false,
                 mediaRecording: null,
                 base64Audio: '',
-                blob: null
+                blob: new Blob()
             };
         },
         beforeDestroy() {

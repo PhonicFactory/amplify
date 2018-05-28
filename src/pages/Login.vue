@@ -112,7 +112,12 @@
                         .then(() => {
                             this.$refs.boards.moveNextBoard();
                             this.loading = false;
-                        });
+                        })
+                        .catch((e) => {
+                            this.loading = false;
+                            alert('Error sending code.  Please try again.')
+                            console.log('Error sending code');
+                        })
                     return;
                 }
                 this.phoneInvalid = true;
