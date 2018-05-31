@@ -13,7 +13,7 @@
                 <md-list-item v-for="message in messages" :key="message.id">
                     <md-icon class="md-primary">call</md-icon>
                     <div class="md-list-text-container">
-                        <span>{{ message.created_at }}</span>
+                        <span>{{ createdAt(message) }}</span>
                     </div>
                     <md-button class="md-icon-button md-list-action" @click="$router.push({ name: 'message', params: { convoId, messageId: message.id } })">
                         <md-icon class="md-primary">hearing</md-icon>
@@ -42,6 +42,7 @@
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex';
+    import moment from 'moment';
     import { conversationLabel } from '../lib/helpers';
 
     export default {
@@ -92,6 +93,9 @@
             },
             closeMessage() {
                 this.$router.push({ name: 'conversation', params: { convoId: this.convoId } });
+            },
+            createdAt({ created_at }) {
+                return moment(created_at).format('MMM D, h:mm A');
             }
         }
     };

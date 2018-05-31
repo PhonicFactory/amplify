@@ -15,11 +15,11 @@
                 </md-board> -->
                 <md-board>
                     <phone-input @changed="phone_number = arguments[0]"/>
-                    <md-button class="mt-md md-raised md-primary" :disabled="!phone_number" @click="phoneNumberSubmitted">Send</md-button>
+                    <md-button class="mt-md md-raised md-primary" :disabled="!phone_number" @click="phoneNumberSubmitted">Create</md-button>
                 </md-board>
-                <md-board>
+                <!-- <md-board>
                     <md-icon class="md-accent">done</md-icon> Message Sent!
-                </md-board>
+                </md-board> -->
             </md-boards>
         </md-dialog>
         <md-button class="md-fab md-fab-bottom-right" id="fab" @click="dialogOpen=true">
@@ -42,14 +42,17 @@
             dialogOpen() {
                 this.$refs.dialog.open();
             },
-            status(value) {
-                console.log('status', value);
+            status(code) {
+                if (code === 'success') {
+                    this.$router.push({ name: 'conversation', params: { convoId: this.conversation.id } })
+                }
             }
         },
         computed: {
             ...mapGetters({
                 user: 'currentUser',
-                status: 'activeConversationStatus'
+                status: 'activeConversationStatus',
+                conversation: 'activeConversation'
             })
         },
         methods: {
