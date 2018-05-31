@@ -31,13 +31,13 @@
         </md-layout>
         <md-dialog ref="activeMessageDialog">
             <md-dialog-content>
-                <active-message />
+                <audio-player :src="activeMessage ? activeMessage.audio : null"/>
             </md-dialog-content>
             <md-dialog-actions>
                 <md-button class="md-primary" @click="closeMessage()">Close</md-button>
             </md-dialog-actions>
         </md-dialog>
-        <new-message />
+        <new-message @created="getAllMessages(convoId)"/>
     </md-layout>
 </template>
 <script>
@@ -62,6 +62,7 @@
         },
         computed: {
             ...mapGetters({
+                activeMessage: 'activeMessage',
                 messages: 'allMessages',
                 status: 'allMessagesStatus',
                 conversation: 'activeConversation',

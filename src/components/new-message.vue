@@ -48,6 +48,7 @@
             status(code) {
                 if (code === 'success') {
                     this.closeRecording();
+                    this.$emit('created');
                 }
             }
         },
@@ -68,13 +69,13 @@
                 this.base64Audio = '';
             },
             sendRecording() {
-                const b64_audio = this.base64Audio;
                 const {
                     id: from_user_id,
                     phone_number: from_phone_number
                 } = this.currentUser;
                 this.postMessageAudio({
-                    b64_audio,
+                    b64_audio: this.base64Audio,
+                    conversation_id: this.conversation.id,
                     from_user_id,
                     from_phone_number
                 });

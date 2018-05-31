@@ -11,14 +11,14 @@
     </div>
 </template>
 <script>
+    import { decode } from 'base64-arraybuffer';
     /**
      * Abstracted from SoundCloud-Waveform-Generator and converted for Vue
      * https://github.com/Idnan/SoundCloud-Waveform-Generator
      */
     export default {
         props: {
-            blob: {
-                type: Blob,
+            src: {
                 required: true
             },
             barWidth: {
@@ -37,6 +37,11 @@
                 default: '#666'
             }
         },
+        mounted() {
+            if (this.src) {
+                this.readSrc();
+            }
+        },
         data() {
             return {
                 internalCanvas: document.createElement('canvas'), // Hidden canvas
@@ -46,23 +51,21 @@
             }
         },
         watch: {
-            blob(value) {
-                const reader = new FileReader();
+            src(value) {
+                this.readSrc();
+            }
+        },
+        methods: {
+            readSrc() {
                 // Set up canvases for rendering
                 this.height = this.$el.offsetHeight;
                 this.width = this.$el.offsetWidth;
                 this.internalCanvas.height = this.height;
                 this.internalCanvas.width = this.width;
-                // Read file buffer
-                reader.onload = (e) => {
-                    this.audioContext.decodeAudioData(e.target.result, (buffer) => {
-                        this.extractBuffer(buffer);
-                    });
-                };
-                reader.readAsArrayBuffer(value);
-            }
-        },
-        methods: {
+                this.audioContext.decodeAudioData(decode(this.src), (buffer) => {
+                    this.extractBuffer(buffer);
+                });
+            },
             extractBuffer(originalBuffer, resolve, reject) {
                 const buffer = originalBuffer.getChannelData(0);
                 const canvas = this.internalCanvas;

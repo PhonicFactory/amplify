@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "base64-arraybuffer": "^0.1.5",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "vue": "^2.5.3",

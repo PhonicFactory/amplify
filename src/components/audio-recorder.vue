@@ -5,7 +5,7 @@
 </style>
 <template>
     <md-layout class="audio-recorder" md-column md-align="center">
-        <audio-player :blob="blob"/>
+        <audio-player v-show="base64Audio" :src="base64Audio"/>
         <!-- <input type="file" accept="audio/*" capture> -->
         <md-button
             class="md-fab"
@@ -26,12 +26,10 @@
             return {
                 isRecording: false,
                 mediaRecording: null,
-                base64Audio: '',
-                blob: new Blob()
+                base64Audio: ''
             };
         },
         beforeDestroy() {
-            console.log('audio-recorder destroyed!');
             this.base64Audio = '';
         },
         watch: {
@@ -55,7 +53,6 @@
                 this.mediaRecording.complete.then(
                     audioData => {
                         console.log('complete', audioData);
-                        this.blob = audioData;
                         blobToBase64(audioData)
                             .then((result) => {
                                 this.base64Audio = result;

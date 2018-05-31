@@ -3,7 +3,6 @@ import Vue from 'vue';
 /**
  * Custom Components
  */
-Vue.component('active-message', require('./active-message.vue').default);
 Vue.component('audio-player', require('./audio-player.vue').default);
 Vue.component('audio-recorder', require('./audio-recorder.vue').default);
 Vue.component('audio-wave', require('./audio-wave.vue').default);

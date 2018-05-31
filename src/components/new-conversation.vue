@@ -9,10 +9,10 @@
     <div class="new-conversation">
         <md-dialog ref="dialog">
             <md-boards v-if="dialogOpen" class="md-boards-simple" ref="boards">
-                <md-board>
+                <!-- <md-board>
                     <audio-recorder @changed="base64Audio = arguments[0]"/>
                     <md-button class="mt-md md-raised md-primary" :disabled="!base64Audio" @click="moveNextBoard">Next</md-button>
-                </md-board>
+                </md-board> -->
                 <md-board>
                     <phone-input @changed="phone_number = arguments[0]"/>
                     <md-button class="mt-md md-raised md-primary" :disabled="!phone_number" @click="phoneNumberSubmitted">Send</md-button>
@@ -56,9 +56,6 @@
             ...mapActions([
                 'createConversation'
             ]),
-            // phoneNumberChanged(value) {
-            //     this.phone_number = value;
-            // },
             moveNextBoard() {
                 this.$refs.boards.moveNextBoard();
             },
@@ -66,10 +63,6 @@
                 this.createConversation({
                     participants: [this.user.phone_number, this.phone_number]
                 });
-                // this.moveNextBoard();
-                // setTimeout(() => {
-                //     alert('Coming Soon!');
-                // }, 500);
             }
         }
     };

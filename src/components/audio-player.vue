@@ -44,51 +44,59 @@
 <template>
     <md-layout class="audio-player">
         <!-- :disabled="!canPlay" -->
-        <md-button class="md-icon-button md-raised" @click="togglePlaying">
-            <md-icon v-if="playing">pause</md-icon>
-            <md-icon v-else>play_arrow</md-icon>
-        </md-button>
-        <md-layout class="metadata" :md-column="true">
-            <div class="audio-wave-container">
-                <audio-wave :blob="blob"/>
-                <div class="progress" :style="{ transform: `scale(${progress}, 1)` }"/>
-            </div>
-            <md-layout class="audio-time">
-                <span>{{currentTime}}</span>
-                <span>{{totalTime}}</span>
+        <template v-if="audioSrc">
+            <md-button class="md-icon-button md-raised" @click="togglePlaying">
+                <md-icon v-if="playing">pause</md-icon>
+                <md-icon v-else>play_arrow</md-icon>
+            </md-button>
+            <md-layout class="metadata" :md-column="true">
+                <div class="audio-wave-container">
+                    <audio-wave :src="audioSrc"/>
+                    <div class="progress" :style="{ transform: `scale(${progress}, 1)` }"/>
+                </div>
+                <md-layout class="audio-time">
+                    <span>{{currentTime}}</span>
+                    <span>{{totalTime}}</span>
+                </md-layout>
             </md-layout>
+            <audio
+                class="player"
+                ref="player"
+                preload
+                controls
+                :src="`data:audio/webm;base64,${audioSrc}`"
+                @durationchange="durationchange"
+                @timeupdate="timeupdate"
+                @ended="ended"
+                @loadedmetadata="loadedmetadata"
+            />
+        </template>
+        <md-layout v-else md-align="center" md-vertical-align="center">
+            <md-spinner md-indeterminate />
         </md-layout>
-        <audio
-            class="player"
-            ref="player"
-            preload
-            controls
-            :src="src"
-            @durationchange="durationchange"
-            @timeupdate="timeupdate"
-            @ended="ended"
-            @loadedmetadata="loadedmetadata"
-        />
     </md-layout>
 </template>
 <script>
 
     export default {
-        props: ['blob'],
+        props: ['src'],
         data() {
             return {
-                src: null,
+                audioSrc: null,
                 currentTime: 0,
                 totalTime: 0,
                 playing: false,
                 progress: 0,
-                canPlay: false
+                // canPlay: false
             }
         },
+        mounted() {
+            this.setSrc();
+        },
         watch: {
-            blob(value) {
-                this.canPlay = false;
-                this.src = window.URL.createObjectURL(value);
+            src(value) {
+                // this.canPlay = false;
+                this.setSrc();
             },
             currentTime(time) {
                 // TODO: FIX duration = Infinity problem
@@ -99,6 +107,15 @@
             }
         },
         methods: {
+            setSrc() {
+                // if (typeof this.src === 'object') {
+                // this.audioSrc = window.URL.createObjectURL(`data:audio/webm;base64,${this.src}`);
+                // } else {
+                if (this.src) {
+                    this.audioSrc = this.src;
+                }
+                // }
+            },
             togglePlaying() {
                 if (!this.playing) {
                     this.$refs.player.play();
