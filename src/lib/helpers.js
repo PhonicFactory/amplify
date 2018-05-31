@@ -29,10 +29,20 @@ export function blobToBase64(blob) {
         try {
             reader.readAsDataURL(blob);
             reader.onloadend = () => {
-                resolve(reader.result);
+                resolve(reader.result.split(',')[1]);
             }
         } catch(e) {
             reject('Error converting audio', e);
         }
     });
+}
+
+/**
+ * Formatted text label for conversation
+ */
+export function conversationLabel(participants, filteredId) {
+    return participants
+        .filter(({ id }) => id !== filteredId)
+        .map(({ phone_number }) => phone_number)
+        .join(', ');
 }

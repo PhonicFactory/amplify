@@ -5,7 +5,7 @@ import auth from './modules/auth';
 import serviceWorker from './modules/service-worker';
 import notifications from './modules/notifications';
 import conversations from './modules/conversations';
-import calls from './modules/calls';
+import messages from './modules/messages';
 import users from './modules/users';
 
 Vue.use(Vuex);
@@ -16,7 +16,7 @@ export default new Store({
         serviceWorker,
         notifications,
         conversations,
-        calls,
+        messages,
         users
     },
     strict: config.nodeEnv !== 'production'

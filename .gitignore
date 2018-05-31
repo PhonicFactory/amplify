@@ -4,3 +4,4 @@ npm-debug.log
 .env
 design
 credentials.csv
+test.js
