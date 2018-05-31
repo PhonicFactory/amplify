@@ -52,8 +52,8 @@ const router = new VueRouter({
             props: { default: true }
         },
         {
-            path: '/conversation/:convoId/call/:callId',
-            name: 'call',
+            path: '/conversation/:convoId/message/:messageId',
+            name: 'message',
             components: { default: Conversation },
             meta: {
                 requiresAuth: true

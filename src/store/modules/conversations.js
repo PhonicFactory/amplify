@@ -5,7 +5,8 @@ import api from '../../lib/api';
 
 // Initial State
 const state = {
-    status: null,
+    allConversationsStatus: null,
+    activeConversationStatus: null,
     activeConversation: null,
     items: []
 };
@@ -14,7 +15,8 @@ const state = {
 const getters = {
     activeConversation: state => state.activeConversation,
     allConversations: state => state.items,
-    allConversationsStatus: state => statuses[state.status]
+    allConversationsStatus: state => statuses[state.allConversationsStatus],
+    activeConversationStatus: state => statuses[state.activeConversationStatus]
 };
 
 // Actions
@@ -26,33 +28,45 @@ const actions = {
             .catch(e => commit(types.RECEIVE_CONVERSATIONS_FAILURE, e));
     },
     setActiveConversation({ commit }, conversation) {
-        commit(types.SET_ACTIVE_CONVERSATION, conversation);
+        commit(types.RECEIVE_ACTIVE_CONVERSATION, conversation);
     },
     fetchActiveConversation({ commit }, id) {
+        commit(types.REQUEST_ACTIVE_CONVERSATION);
         api.get('conversation', { id })
-            .then(conversation => commit(types.SET_ACTIVE_CONVERSATION, conversation))
-            .catch(e => commit(types.RECEIVE_CONVERSATION_FAILURE, e));
+            .then(conversation => commit(types.RECEIVE_ACTIVE_CONVERSATION, conversation))
+            .catch(e => commit(types.RECEIVE_ACTIVE_CONVERSATION_FAILURE, e));
+    },
+    createConversation({ commit }, payload) {
+        commit(types.REQUEST_ACTIVE_CONVERSATION);
+        api.post('conversations', {}, payload)
+            .then(conversation => commit(types.RECEIVE_ACTIVE_CONVERSATION, conversation))
+            .catch(e => commit(types.RECEIVE_ACTIVE_CONVERSATION_FAILURE, e));
     }
 };
 
 // Mutations
 const mutations = {
     [types.REQUEST_CONVERSATIONS](state) {
-        state.status = 0;
+        state.allConversationsStatus = 0;
     },
     [types.RECEIVE_CONVERSATIONS](state, conversations) {
         state.items = conversations.items;
-        state.status = 1;
+        state.allConversationsStatus = 1;
     },
     [types.RECEIVE_CONVERSATIONS_FAILURE](state, e) {
         console.log('RECEIVE_CONVERSATIONS_FAILURE', e);
-        state.status = 2;
+        state.allConversationsStatus = 2;
     },
-    [types.RECEIVE_CONVERSATION_FAILURE](state, e) {
+    [types.RECEIVE_ACTIVE_CONVERSATION_FAILURE](state, e) {
         console.log('RECEIVE_CONVERSATION_FAILURE', e);
+        state.activeConversationStatus = 2;
     },
-    [types.SET_ACTIVE_CONVERSATION](state, conversation) {
+    [types.REQUEST_ACTIVE_CONVERSATION](state) {
+        state.activeConversationStatus = 0;
+    },
+    [types.RECEIVE_ACTIVE_CONVERSATION](state, conversation) {
         state.activeConversation = conversation;
+        state.activeConversationStatus = 1;
     }
 };
 

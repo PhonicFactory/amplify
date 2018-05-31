@@ -36,3 +36,13 @@ export function blobToBase64(blob) {
         }
     });
 }
+
+/**
+ * Formatted text label for conversation
+ */
+export function conversationLabel(participants, filteredId) {
+    return participants
+        .filter(({ id }) => id !== filteredId)
+        .map(({ phone_number }) => phone_number)
+        .join(', ');
+}

@@ -1,16 +1,11 @@
 <style lang="scss">
     .audio-recorder{
         align-items: center;
-
-        .player{
-            height: 48px;
-        }
     }
 </style>
 <template>
     <md-layout class="audio-recorder" md-column md-align="center">
-        <audio-wave :blob="blob"/>
-        <audio class='player' ref="player" controls></audio>
+        <audio-player :blob="blob"/>
         <!-- <input type="file" accept="audio/*" capture> -->
         <md-button
             class="md-fab"
@@ -61,7 +56,6 @@
                     audioData => {
                         console.log('complete', audioData);
                         this.blob = audioData;
-                        this.$refs.player.src = window.URL.createObjectURL(audioData);
                         blobToBase64(audioData)
                             .then((result) => {
                                 this.base64Audio = result;

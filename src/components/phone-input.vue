@@ -70,7 +70,7 @@
         watch: {
             value(val) {
                 this.invalid = !this.$refs.input.$el.checkValidity();
-                this.$emit('changed', this.invalid ? false : val);
+                this.$emit('changed', this.invalid ? false : `+1${val}`);
             }
         }
     };

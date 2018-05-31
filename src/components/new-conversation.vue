@@ -10,12 +10,12 @@
         <md-dialog ref="dialog">
             <md-boards v-if="dialogOpen" class="md-boards-simple" ref="boards">
                 <md-board>
-                    <audio-recorder @changed="audioRecordingChanged"/>
-                    <md-button class="mt-md md-raised md-primary" :disabled="!audioRecording" @click="moveNextBoard">Next</md-button>
+                    <audio-recorder @changed="base64Audio = arguments[0]"/>
+                    <md-button class="mt-md md-raised md-primary" :disabled="!base64Audio" @click="moveNextBoard">Next</md-button>
                 </md-board>
                 <md-board>
-                    <phone-input @changed="phoneNumberChanged"/>
-                    <md-button class="mt-md md-raised md-primary" :disabled="!phoneNumber" @click="createConversation">Send</md-button>
+                    <phone-input @changed="phone_number = arguments[0]"/>
+                    <md-button class="mt-md md-raised md-primary" :disabled="!phone_number" @click="phoneNumberSubmitted">Send</md-button>
                 </md-board>
                 <md-board>
                     <md-icon class="md-accent">done</md-icon> Message Sent!
@@ -28,36 +28,48 @@
     </div>
 </template>
 <script>
-    // import { mapActions, mapGetters } from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
 
     export default {
         data() {
             return {
-                audioRecording: false,
-                phoneNumber: false,
+                base64Audio: '',
+                phone_number: false,
                 dialogOpen: false
             };
         },
         watch: {
             dialogOpen() {
                 this.$refs.dialog.open();
+            },
+            status(value) {
+                console.log('status', value);
             }
         },
+        computed: {
+            ...mapGetters({
+                user: 'currentUser',
+                status: 'activeConversationStatus'
+            })
+        },
         methods: {
-            audioRecordingChanged(recording) {
-                this.audioRecording = recording;
-            },
-            phoneNumberChanged(value) {
-                this.phoneNumber = value;
-            },
+            ...mapActions([
+                'createConversation'
+            ]),
+            // phoneNumberChanged(value) {
+            //     this.phone_number = value;
+            // },
             moveNextBoard() {
                 this.$refs.boards.moveNextBoard();
             },
-            createConversation() {
-                this.moveNextBoard();
-                setTimeout(() => {
-                    alert('Coming Soon!');
-                }, 500);
+            phoneNumberSubmitted() {
+                this.createConversation({
+                    participants: [this.user.phone_number, this.phone_number]
+                });
+                // this.moveNextBoard();
+                // setTimeout(() => {
+                //     alert('Coming Soon!');
+                // }, 500);
             }
         }
     };

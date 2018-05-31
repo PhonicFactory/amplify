@@ -1,8 +1,8 @@
 <template>
     <md-layout md-column>
-        <template v-if="activeCall">
-            <audio style="height:48px;" controls v-if="activeCall.audio" autoplay="true">
-                <source :src="activeCall.audio" type="audio/wav">
+        <template v-if="message">
+            <audio style="height:48px;" controls v-if="message.audio" autoplay="true">
+                <source :src="message.audio" type="audio/wav">
             </audio>
             <span v-else>Loading...</span>
         </template>
@@ -14,7 +14,7 @@
     export default {
         computed: {
             ...mapGetters({
-                activeCall: 'activeCall'
+                message: 'activeMessage'
             })
         }
     };

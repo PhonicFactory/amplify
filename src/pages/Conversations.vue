@@ -14,8 +14,8 @@
                 <md-list-item v-for="convo in convos" :key="convo.id" @click="convoSelected(convo)">
                     <md-icon class="md-primary">face</md-icon>
                     <div class="md-list-text-container">
-                        <span>{{ convo.from_phone_number }}</span>
-                        <span>at {{ convo.created_at }}</span>
+                        {{ conversationLabel(convo.participants, currentUser.id) }}
+                        <!-- <span>at {{ convo.created_at }}</span> -->
                     </div>
                     <md-button class="md-icon-button md-list-action">
                         <md-icon class="md-primary">keyboard_arrow_right</md-icon>
@@ -36,6 +36,7 @@
 </template>
 <script>
     import { mapGetters, mapActions } from 'vuex';
+    import { conversationLabel } from '../lib/helpers';
 
     export default {
         mounted() {
@@ -44,7 +45,8 @@
         computed: {
             ...mapGetters({
                 convos: 'allConversations',
-                status: 'allConversationsStatus'
+                status: 'allConversationsStatus',
+                currentUser: 'currentUser'
             })
         },
         methods: {
@@ -52,6 +54,7 @@
                 'getAllConversations',
                 'setActiveConversation'
             ]),
+            conversationLabel: conversationLabel,
             convoSelected(conversation) {
                 this.setActiveConversation(conversation);
                 this.$router.push({ name: 'conversation', params: { convoId: conversation.id } })

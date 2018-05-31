@@ -1,7 +1,7 @@
 <style lang="scss">
     .audio-wave {
         width: 100%;
-        height: 48px;
+        height: 100%;
     }
 </style>
 
@@ -15,12 +15,6 @@
      * Abstracted from SoundCloud-Waveform-Generator and converted for Vue
      * https://github.com/Idnan/SoundCloud-Waveform-Generator
      */
-
-    // Can this go somewhere else?
-    Array.prototype.max = function() {
-        return Math.max.apply(null, this);
-    };
-
     export default {
         props: {
             blob: {
@@ -53,14 +47,13 @@
         },
         watch: {
             blob(value) {
+                const reader = new FileReader();
                 // Set up canvases for rendering
                 this.height = this.$el.offsetHeight;
                 this.width = this.$el.offsetWidth;
                 this.internalCanvas.height = this.height;
                 this.internalCanvas.width = this.width;
-
-                // read file buffer
-                const reader = new FileReader();
+                // Read file buffer
                 reader.onload = (e) => {
                     this.audioContext.decodeAudioData(e.target.result, (buffer) => {
                         this.extractBuffer(buffer);
@@ -84,7 +77,7 @@
                     vals.push(this.bufferMeasure(i * len, len, buffer) * 10000);
                 }
                 for (let j = 0; j < width; j += this.barWidth) {
-                    scale = height / vals.max();
+                    scale = height / Math.max.apply(null, vals);
                     val = this.bufferMeasure(j * len, len, buffer) * 10000;
                     val *= scale;
                     val += 1;
@@ -92,7 +85,7 @@
                 }
                 // Draw visible canvas
                 this.$refs.canvas.getContext('2d').putImageData(context.getImageData(0, 0, width, height), 0, 0);
-                // clear canvas for redrawing
+                // Clear canvas for redrawing
                 context.clearRect(0, 0, width, height);
             },
             bufferMeasure(position, length, data) {
