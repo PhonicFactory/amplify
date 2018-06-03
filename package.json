@@ -9,10 +9,10 @@
     "url": "https://github.com/EarTickling/amplify.git"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack --progress --hide-modules --config=./build/webpack.dev.conf",
-    "watch": "NODE_ENV=development webpack --progress --watch --hide-modules --config=./build/webpack.dev.conf",
-    "hot": "NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
-    "prod": "NODE_ENV=production webpack --config=./build/webpack.prod.conf",
+    "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=./build/webpack.dev.conf",
+    "watch": "cross-env NODE_ENV=development webpack --progress --watch --hide-modules --config=./build/webpack.dev.conf",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.dev.conf",
+    "prod": "cross-env NODE_ENV=production webpack --config=./build/webpack.prod.conf",
     "server": "node ./server.js",
     "deploy": "yarn && yarn prod && forever start -d ./forever.json",
     "stop": "forever stopall"
@@ -21,6 +21,7 @@
     "axios": "^0.17.0",
     "base64-arraybuffer": "^0.1.5",
     "body-parser": "^1.18.2",
+    "cross-env": "^5.1.6",
     "express": "^4.16.2",
     "moment": "^2.22.1",
     "vue": "^2.5.3",
