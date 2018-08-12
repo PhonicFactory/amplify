@@ -6,6 +6,8 @@ import Login from '../pages/Login.vue';
 import Profile from '../pages/Profile.vue';
 import Conversations from '../pages/Conversations.vue';
 import Conversation from '../pages/Conversation.vue';
+import Podcasts from '../pages/Podcasts.vue';
+import Podcast from '../pages/Podcast.vue';
 
 Vue.use(VueRouter);
 
@@ -59,7 +61,19 @@ const router = new VueRouter({
                 requiresAuth: true
             },
             props: { default: true }
-        }
+        },
+        {
+            path: '/podcasts',
+            name: 'podcasts',
+            components: { default: Podcasts }
+        },
+        {
+            path: '/podcasts/:id',
+            name: 'podcast',
+            components: { default: Podcast },
+            props: { default: true }
+        },
+
     ]
 });
 

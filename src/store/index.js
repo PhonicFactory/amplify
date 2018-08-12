@@ -7,6 +7,7 @@ import notifications from './modules/notifications';
 import conversations from './modules/conversations';
 import messages from './modules/messages';
 import users from './modules/users';
+import podcasts from './modules/podcasts';
 
 Vue.use(Vuex);
 
@@ -17,7 +18,8 @@ export default new Store({
         notifications,
         conversations,
         messages,
-        users
+        users,
+        podcasts
     },
     strict: config.nodeEnv !== 'production'
 });

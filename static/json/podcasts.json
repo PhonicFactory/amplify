@@ -1,0 +1,66 @@
+{
+  "items": [{
+      "id": 1,
+      "audio": "https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/afec98cc-f2ba-4621-8958-b4e24aee1385.mp3",
+      "img": "https://content.production.cdn.art19.com/images/c5/7f/52/e5/c57f52e5-a9a3-40b6-897e-f0d39a693a46/315e799bc79e7e2d1d77ae1ee3186711af8a9abf4fbe225e0bc1b7d90d448bfaeca4e84ed82e850ebc6cd6beb822ad7e40a544e00aeee27a53c20d8736cd5b1e.jpeg",
+      "name": "Dear Sugars",
+      "title": "Emotional Abuse",
+      "date": "August 4, 2018",
+      "length": "",
+      "url": "/podcasts/dear_sugars/emotional_abuse.html"
+  }, {
+      "id": 2,
+      "audio": "https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/4359eb03-1266-4f1f-b13d-fb20ba059e50.mp3",
+      "img": "https://content.production.cdn.art19.com/images/01/1b/f3/d6/011bf3d6-a448-4533-967b-e2f19e376480/7fdd4469c1b5cb3b66aa7dcc9fa21f138efe9a0310a8a269f3dcd07c83a552844fcc445ea2d53db1e55d6fb077aeaa8a1566851f8f2d8ac4349d9d23a87a69f5.jpeg",
+      "name": "The Daily",
+      "title": "How Paul Manafort's Plans Backfired",
+      "date": "August 3, 2018",
+      "length": "00:25:33",
+      "url": "/podcasts/the_daily/how_paul_manafort.html"
+  }, {
+      "id": 3,
+      "audio": "https://play.podtrac.com/npr-510289/npr.mc.tritondigital.com/NPR_510289/media/anon.npr-mp3/npr/pmoney/2018/08/20180803_pmoney_pmpod858.mp3?orgId=1&d=1142&p=510289&story=635519727&t=podcast&e=635519727&ft=pod&f=510289",
+      "img": "https://media.npr.org/assets/img/2018/08/03/gettyimages-1007888832_wide-5efb0f37e0af6ef5283ccb8bbc9bb5eaccb8c6be.jpg?s=1400",
+      "name": "Planet Money",
+      "title": "Venezuela's Fugative Money Traders",
+      "date": "August 3, 2018",
+      "length": "",
+      "url": "/podcasts/planet_money/venezuela.html"
+  }, {
+      "id": 4,
+      "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/PPY1211099900.mp3",
+      "img": "http://static.megaphone.fm/podcasts/322754a0-8289-11e5-b42a-9768945f372d/image/uploads_2F1516106554073-8qgavf6rjq8-a63340bf37b427df31e62e0440cc0294_2F01_Slate_Redux_Podcast_Cover_The-Gist.jpg",
+      "name": "The Gist",
+      "title": "The Pushback Artist",
+      "date": "July 28, 2018",
+      "length": "",
+      "url": "/podcasts/the_gist/pushback_artist.html"
+  }, {
+      "id": 5,
+      "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/PPY2924269214.mp3",
+      "img": "http://static.megaphone.fm/podcasts/322754a0-8289-11e5-b42a-9768945f372d/image/uploads_2F1516106554073-8qgavf6rjq8-a63340bf37b427df31e62e0440cc0294_2F01_Slate_Redux_Podcast_Cover_The-Gist.jpg",
+      "name": "The Gist",
+      "title": "Lights, Camera, Sexism",
+      "date": "July 25, 2018",
+      "length": "",
+      "url": "/podcasts/the_gist/lights_camera_sexism.html"
+  }, {
+      "id": 6,
+      "audio": "https://dts.podtrac.com/redirect.mp3/rss.art19.com/episodes/1d40ddbb-7334-4e79-9fb2-9c2674840ae2.mp3https://dts.podtrac.com/redirect.mp3/media.blubrry.com/99percentinvisible/dovetail.prxu.org/96/474ddc6a-89d7-46d3-83a4-8f153c94e3a3/316_The_Shipping_Forecast_pt01.mp3",
+      "img": "https://content.production.cdn.art19.com/images/44/f7/bb/b8/44f7bbb8-40ce-4a63-8ab8-9bc1cd71f4be/ba7aed20b307b76c2a8ba9a6473fd4c831179c6a24e20bf3179af4f11e06bc96968fca9edf17f4d55b5cae6ef3d97484f6b34b288426d42c5f59a515a8a37d67.jpeg",
+      "name": "Still Processing",
+      "title": "We Heard Lauryn Hill, But Did We Listen?",
+      "date": "July 26, 2018",
+      "length": "",
+      "url": "/podcasts/still_processing/we_heard_lauryn_hill.html"
+  }, {
+      "id": 7,
+      "audio": "https://dts.podtrac.com/redirect.mp3/media.blubrry.com/99percentinvisible/dovetail.prxu.org/96/474ddc6a-89d7-46d3-83a4-8f153c94e3a3/316_The_Shipping_Forecast_pt01.mp3",
+      "img": "https://f.prxu.org/96/images/a52a20dd-7b8e-46be-86a0-dda86b0953fc/99-300.png",
+      "name": "99% Invisible",
+      "title": "The Shipping Forecast",
+      "date": "August 1, 2018",
+      "length": "",
+      "url": "/podcasts/99_invisible/shipping_forecast.html"
+  }]
+}
